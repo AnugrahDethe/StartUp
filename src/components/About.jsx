@@ -53,7 +53,7 @@ const About = () => {
             <span className="text-xs font-medium text-gray-400 tracking-widest uppercase">The Team</span>
           </div>
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            Built by <span className="text-gradient">Builders</span>
+            About <span className="text-gradient">US</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
             We're a tight-knit team of engineers and designers obsessed with crafting digital experiences that last.
