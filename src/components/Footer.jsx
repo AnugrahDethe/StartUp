@@ -11,8 +11,8 @@ const footerLinks = [
 ];
 
 const socials = [
-  { Icon: Linkedin, href: 'https://www.linkedin.com/company/vivernlab/', label: 'LinkedIn' },
-  { Icon: Instagram, href: 'https://www.instagram.com/vivernlabs?igsh=NGdtaGJ1eGIxdnY=', label: 'Instagram' },
+  { Icon: Linkedin, href: 'https://www.linkedin.com/company/Vivernlabs/', label: 'LinkedIn' },
+  { Icon: Instagram, href: 'https://www.instagram.com/Vivernlabss?igsh=NGdtaGJ1eGIxdnY=', label: 'Instagram' },
 ];
 
 const Footer = ({ onNavigate }) => {
@@ -92,7 +92,7 @@ const Footer = ({ onNavigate }) => {
 
         {/* Bottom Row */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-gray-600">&copy; {year} VivernLabs. All rights reserved.</p>
+          <p className="text-xs text-gray-600">&copy; {year} Vivernlabss. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <button onClick={() => onNavigate('privacy-policy')} className="text-xs text-gray-600 hover:text-gray-400 transition-colors">Privacy Policy</button>
             <button onClick={() => onNavigate('terms-conditions')} className="text-xs text-gray-600 hover:text-gray-400 transition-colors">Terms of Service</button>

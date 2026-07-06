@@ -62,7 +62,7 @@ const About = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/5 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-            <span className="text-xs font-medium text-gray-400 tracking-widest uppercase">VivernLab</span>
+            <span className="text-xs font-medium text-gray-400 tracking-widest uppercase">Vivernlabs</span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold">
             About <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Us</span>
@@ -86,7 +86,7 @@ const About = () => {
 
           <motion.div variants={fadeUpVariant} className="lg:col-span-7 space-y-6 text-gray-400 text-lg leading-relaxed">
             <p>
-              VivernLab was founded with a singular, uncompromising goal: to help businesses adopt modern, transformative technology without the unnecessary complexity that usually accompanies it.
+              Vivernlabs was founded with a singular, uncompromising goal: to help businesses adopt modern, transformative technology without the unnecessary complexity that usually accompanies it.
             </p>
             <p>
               We believe that software shouldn't just be a collection of features; it should solve real-world problems, drastically improve operational efficiency, and create measurable, sustainable business value. Our journey started when we noticed a massive gap between high-end technological capabilities—like AI, advanced data science, and scalable cloud architectures—and the everyday businesses that needed them the most.
@@ -165,7 +165,7 @@ const About = () => {
           className="text-center mb-16"
         >
           <motion.h3 variants={fadeUpVariant} className="text-3xl md:text-4xl font-bold mb-4">Meet the <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Founders</span></motion.h3>
-          <motion.p variants={fadeUpVariant} className="text-gray-400 max-w-2xl mx-auto">The architects behind VivernLab's vision.</motion.p>
+          <motion.p variants={fadeUpVariant} className="text-gray-400 max-w-2xl mx-auto">The architects behind Vivernlabs's vision.</motion.p>
         </motion.div>
 
         <motion.div

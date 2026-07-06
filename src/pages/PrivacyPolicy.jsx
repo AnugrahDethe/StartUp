@@ -46,10 +46,10 @@ const PrivacyPolicy = ({ onBack }) => {
             className="prose prose-invert prose-blue max-w-none glass p-8 md:p-12 rounded-3xl border border-white/5"
           >
             <div className="space-y-8 text-gray-300 leading-relaxed">
-              
+
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Introduction</h2>
-                <p>Welcome to VivernLab.</p>
+                <p>Welcome to Vivernlabs.</p>
                 <p>We value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and protect the information you provide when using our website or contacting us.</p>
               </section>
 

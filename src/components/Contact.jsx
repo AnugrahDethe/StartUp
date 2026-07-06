@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const contactMethods = [
   {
-    icon: Mail, label: 'Email Us', value: 'vivernlabs@com',
+    icon: Mail, label: 'Email Us', value: 'Vivernlabss@com',
     accent: '#6366F1', gradient: 'from-indigo-500/20 to-transparent',
   },
   {
