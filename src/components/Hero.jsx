@@ -1,10 +1,8 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle, Calendar, Globe, Smartphone, Code2, Users } from 'lucide-react';
-
-
-// Animated counter on scroll
+import { ArrowRight, CheckCircle, Calendar, Globe, Smartphone, Code2, Users, Activity } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
+// Animated counter on scroll
 const useCountUp = (target, duration = 1800) => {
   const [value, setValue] = useState(0);
   const [started, setStarted] = useState(false);
@@ -25,7 +23,6 @@ const useCountUp = (target, duration = 1800) => {
     const animate = (timestamp) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
-      // Ease out
       const eased = 1 - Math.pow(1 - progress, 3);
       setValue(Math.floor(eased * target));
       if (progress < 1) requestAnimationFrame(animate);
@@ -55,13 +52,6 @@ const StatCard = ({ target, suffix, label }) => {
   );
 };
 
-const services = [
-  { icon: Globe,      label: 'Web Development' },
-  { icon: Smartphone, label: 'Mobile Apps' },
-  { icon: Code2,      label: 'Custom Software' },
-  { icon: Users,      label: 'CRM & ERP' },
-];
-
 // Stagger container
 const container = {
   hidden: {},
@@ -73,115 +63,144 @@ const item = {
 };
 
 const Hero = () => (
-  <section id="home" className="relative min-h-screen flex items-center pt-32 pb-24 overflow-hidden">
+  <section id="home" className="relative min-h-screen flex items-center pt-32 pb-24 overflow-hidden bg-[#030305]">
 
-    {/* Background overlay to ensure text readability */}
-    <div className="absolute inset-0 bg-[#030305]/60 pointer-events-none" />
-    {/* Subtle grid */}
-    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:5rem_5rem] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_40%,#000_30%,transparent_100%)] pointer-events-none" />
-    {/* Ambient glows */}
-    <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-indigo-600/8 rounded-full blur-[130px] pointer-events-none" />
-    <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-cyan-500/5 rounded-full blur-[100px] pointer-events-none" />
+    {/* Background grids and glows */}
+    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:5rem_5rem] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,#000_30%,transparent_100%)] pointer-events-none" />
+    <div className="absolute top-1/3 left-0 w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[150px] pointer-events-none" />
+    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none" />
 
     <div className="container mx-auto px-6 md:px-12 relative z-10">
       <motion.div
         variants={container}
         initial="hidden"
         animate="show"
-        className="max-w-5xl mx-auto"
+        className="max-w-7xl mx-auto"
       >
-        {/* Badge */}
-        <motion.div variants={item} className="flex justify-center md:justify-start mb-8">
-          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full glass border border-white/5">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-            </span>
-            <span className="text-xs font-medium text-gray-300 tracking-widest uppercase">
-              Available for New Projects
-            </span>
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+          
+          {/* Left Column: Text & CTA */}
+          <div className="text-center md:text-left">
+            <motion.div variants={item} className="mb-6 inline-block">
+              <span className="text-sm font-bold tracking-[0.2em] text-cyan-400 uppercase">
+                IT Solution
+              </span>
+            </motion.div>
+
+            <motion.h1
+              variants={item}
+              className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 text-white"
+            >
+              Building Intelligent <br className="hidden md:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Software</span> for <br className="hidden md:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Modern Businesses.</span>
+            </motion.h1>
+
+            <motion.p
+              variants={item}
+              className="text-lg text-gray-400 mb-10 max-w-xl leading-relaxed font-light mx-auto md:mx-0"
+            >
+              We help businesses grow by delivering smart, reliable, and future-ready digital solutions. Our expertise combines technology, creativity, and strategy to transform ideas into impactful digital experiences.
+            </motion.p>
+
+            <motion.div
+              variants={item}
+              className="flex flex-wrap gap-4 justify-center md:justify-start"
+            >
+              <motion.a
+                href="#contact"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                className="group relative px-8 py-3.5 rounded-full font-semibold text-white overflow-hidden inline-flex items-center gap-2 bg-white/5 border border-white/10 hover:border-cyan-500/50 transition-colors"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <span className="relative z-10 flex items-center gap-2">
+                  Get Started <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                </span>
+              </motion.a>
+
+              <motion.a
+                href="#seo"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                className="px-8 py-3.5 rounded-full font-medium text-gray-300 hover:text-white glass glass-hover inline-flex items-center gap-2 transition-all border border-white/10 group"
+              >
+                SEO Analyser
+                <Activity size={18} className="text-cyan-400 group-hover:rotate-12 transition-transform" />
+              </motion.a>
+            </motion.div>
           </div>
-        </motion.div>
 
-        {/* Headline */}
-        <motion.h1
-          variants={item}
-          className="text-5xl md:text-7xl lg:text-[82px] font-bold leading-[1.05] mb-8 text-center md:text-left"
-        >
-          <span className="text-gradient-white block">We Build With</span>
-          <span className="text-gradient block">AI-Powered Technologies.</span>
-        </motion.h1>
+          {/* Right Column: Image Collage */}
+          <motion.div variants={item} className="relative hidden lg:block">
+            <div className="grid grid-cols-2 gap-5 h-[500px]">
+              
+              {/* Left side of collage (2 stacked items) */}
+              <div className="flex flex-col gap-5 h-full">
+                {/* Top Image */}
+                <div className="flex-1 rounded-3xl overflow-hidden glass border border-white/10 relative group shadow-2xl">
+                  <div className="absolute inset-0 bg-cyan-500/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+                  <img 
+                    src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" 
+                    alt="Developer coding" 
+                    className="w-full h-full object-cover mix-blend-luminosity opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                  />
+                </div>
+                
+                {/* Bottom Info Card */}
+                <div className="flex-1 rounded-3xl p-6 relative overflow-hidden group shadow-2xl bg-cyan-500/10 border border-cyan-500/20 flex flex-col justify-center">
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-500/5" />
+                  <div className="relative z-10">
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">Strategic IT</h3>
+                    <p className="text-sm text-cyan-100/70 leading-relaxed mb-4">
+                      Solutions designed for your brand growth in a digital-first world.
+                    </p>
+                    <a href="#services" className="inline-flex items-center gap-1 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors">
+                      Learn More <ArrowRight size={14} />
+                    </a>
+                  </div>
+                </div>
+              </div>
 
-        {/* Subheadline */}
-        <motion.p
-          variants={item}
-          className="text-lg md:text-xl text-gray-400 mb-12 max-w-3xl leading-relaxed text-center md:text-left font-light"
-        >
-          We design and develop{' '}
-          <span className="text-white font-medium">websites, mobile applications, AI solutions, CRM platforms, and custom software</span>{' '}
-          that help businesses automate operations and increase revenue.
-        </motion.p>
+              {/* Right side of collage (1 tall image) */}
+              <div className="h-full rounded-3xl overflow-hidden glass border border-white/10 relative group shadow-2xl">
+                <div className="absolute inset-0 bg-blue-500/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+                <img 
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" 
+                  alt="Team collaboration" 
+                  className="w-full h-full object-cover mix-blend-luminosity opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                />
+              </div>
 
-        {/* CTAs */}
-        <motion.div
-          variants={item}
-          className="flex flex-wrap gap-4 justify-center md:justify-start mb-20"
-        >
-          {/* Primary */}
-          <motion.a
-            href="#contact"
-            whileHover={{ scale: 1.04, boxShadow: '0 0 40px rgba(99,102,241,0.45)' }}
-            whileTap={{ scale: 0.97 }}
-            className="group relative px-8 py-4 rounded-full font-semibold text-white overflow-hidden inline-flex items-center gap-2"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-cyan-500" />
-            <motion.div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <Calendar size={18} className="relative z-10" />
-            <span className="relative z-10">Get Free Consultation</span>
-          </motion.a>
-
-          {/* Secondary */}
-          <motion.a
-            href="#production"
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            className="px-8 py-4 rounded-full font-medium text-gray-300 hover:text-white glass glass-hover inline-flex items-center gap-2 transition-all"
-          >
-            View Our Work
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </motion.a>
-        </motion.div>
-
+            </div>
+          </motion.div>
+        </div>
 
         {/* Divider */}
         <motion.div variants={item} className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-16" />
 
-        {/* Real Business Stats */}
-        <motion.div
-          variants={item}
-          className="grid grid-cols-2 md:grid-cols-4 gap-10"
-        >
-          {stats.map((stat) => (
-            <StatCard key={stat.label} {...stat} />
-          ))}
+        {/* Stats & Trust */}
+        <motion.div variants={item} className="flex flex-col lg:flex-row items-center justify-between gap-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
+            {stats.map((stat) => (
+              <StatCard key={stat.label} {...stat} />
+            ))}
+          </div>
+
+          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 justify-center">
+            {[
+              '100% Custom Code',
+              'No-Template Designs',
+              'Post-Launch Support',
+            ].map(text => (
+              <div key={text} className="flex items-center gap-1.5 bg-white/5 px-3 py-1.5 rounded-full border border-white/5">
+                <CheckCircle size={14} className="text-cyan-500" />
+                <span>{text}</span>
+              </div>
+            ))}
+          </div>
         </motion.div>
 
-        {/* Trust line */}
-        <motion.div
-          variants={item}
-          className="mt-14 flex flex-wrap items-center gap-3 text-sm text-gray-500 justify-center md:justify-start"
-        >
-          {[
-            '100% Custom Code',
-            'No-Template Designs',
-            'Post-Launch Support',
-          ].map(text => (
-            <div key={text} className="flex items-center gap-1.5">
-              <CheckCircle size={14} className="text-emerald-500" />
-              <span>{text}</span>
-            </div>
-          ))}
-        </motion.div>
       </motion.div>
     </div>
   </section>

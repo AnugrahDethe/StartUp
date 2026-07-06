@@ -4,15 +4,15 @@ import { useState } from 'react';
 
 const contactMethods = [
   {
-    icon: Mail, label: 'Email Us', value: 'hello@aivoice.com',
+    icon: Mail, label: 'Email Us', value: 'vivernlabs@com',
     accent: '#6366F1', gradient: 'from-indigo-500/20 to-transparent',
   },
   {
-    icon: Phone, label: 'WhatsApp / Call', value: '+1 (555) 123-4567',
+    icon: Phone, label: 'WhatsApp / Call', value: '8591207346',
     accent: '#06B6D4', gradient: 'from-cyan-500/20 to-transparent',
   },
   {
-    icon: MapPin, label: 'HQ', value: 'Global · Remote Team',
+    icon: MapPin, label: 'HQ', value: 'Navi Mumbai',
     accent: '#8B5CF6', gradient: 'from-violet-500/20 to-transparent',
   },
 ];

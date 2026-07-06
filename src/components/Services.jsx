@@ -1,9 +1,10 @@
 import { motion, useInView } from 'framer-motion';
-import { Monitor, Smartphone, Code2, Users } from 'lucide-react';
+import { Monitor, Smartphone, Code2, Users, ArrowRight } from 'lucide-react';
 import { useRef } from 'react';
 
 const services = [
   {
+    id: 'website-development',
     title: 'Website Development',
     description: 'Pixel-perfect, high-performance web experiences that load fast, rank well, and convert visitors into loyal customers.',
     icon: Monitor,
@@ -13,6 +14,7 @@ const services = [
     tag: 'React • Next.js • SEO',
   },
   {
+    id: 'android-app-dev',
     title: 'Android App Dev',
     description: 'Native and cross-platform mobile apps with buttery-smooth UX, powerful offline support, and AI-enhanced features.',
     icon: Smartphone,
@@ -22,6 +24,7 @@ const services = [
     tag: 'React Native • Kotlin',
   },
   {
+    id: 'software-development',
     title: 'Software Development',
     description: 'Scalable, AI-powered backend systems, APIs, and automation pipelines that eliminate bottlenecks and drive growth.',
     icon: Code2,
@@ -31,6 +34,7 @@ const services = [
     tag: 'Python • Node • AI/ML',
   },
   {
+    id: 'crm-solutions',
     title: 'CRM Solutions',
     description: 'Intelligent customer pipelines that automate lead scoring, outreach, and reporting — your always-on sales team.',
     icon: Users,
@@ -54,13 +58,14 @@ const cardVariants = {
   },
 };
 
-const ServiceCard = ({ service }) => {
+const ServiceCard = ({ service, onServiceClick }) => {
   const Icon = service.icon;
   return (
     <motion.div
       variants={cardVariants}
       whileHover={{ y: -10, transition: { duration: 0.3 } }}
-      className="relative group rounded-3xl glass border border-white/5 p-8 overflow-hidden cursor-pointer shimmer-border"
+      onClick={() => onServiceClick(service.id)}
+      className="relative group rounded-3xl glass border border-white/5 p-8 overflow-hidden cursor-pointer shimmer-border select-none"
     >
       {/* Animated glow on hover */}
       <motion.div
@@ -92,16 +97,14 @@ const ServiceCard = ({ service }) => {
         {service.description}
       </p>
 
-      {/* Tag strip */}
-      <div className="flex flex-wrap gap-2">
-        {service.tag.split(' • ').map(t => (
-          <span key={t}
-            className="text-[10px] font-medium px-2.5 py-1 rounded-full border"
-            style={{ color: service.accent, borderColor: `${service.accent}40`, background: `${service.accent}10` }}
-          >
-            {t}
-          </span>
-        ))}
+
+
+      {/* Explore link */}
+      <div
+        className="flex items-center gap-1.5 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0"
+        style={{ color: service.accent }}
+      >
+        Learn More <ArrowRight size={13} />
       </div>
 
       {/* Bottom glow line */}
@@ -113,7 +116,7 @@ const ServiceCard = ({ service }) => {
   );
 };
 
-const Services = () => {
+const Services = ({ onServiceClick }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, amount: 0.1 });
 
@@ -153,6 +156,7 @@ const Services = () => {
             className="text-gray-400 text-lg leading-relaxed"
           >
             We leverage cutting-edge AI and modern frameworks to deliver solutions that put your business years ahead of the competition.
+            <span className="block mt-2 text-sm text-gray-500">Click any service to explore it in depth →</span>
           </motion.p>
         </div>
 
@@ -165,7 +169,7 @@ const Services = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {services.map((service) => (
-            <ServiceCard key={service.title} service={service} />
+            <ServiceCard key={service.title} service={service} onServiceClick={onServiceClick} />
           ))}
         </motion.div>
       </div>

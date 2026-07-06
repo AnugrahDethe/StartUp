@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Twitter, Linkedin, Github, Instagram, ArrowUpRight } from 'lucide-react';
+import { Linkedin, Instagram, ArrowUpRight } from 'lucide-react';
 import logoImg from '../assets/logo.png';
 
 const footerLinks = [
@@ -11,13 +11,11 @@ const footerLinks = [
 ];
 
 const socials = [
-  { Icon: Twitter, href: '#', label: 'Twitter' },
-  { Icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { Icon: Github, href: '#', label: 'GitHub' },
-  { Icon: Instagram, href: '#', label: 'Instagram' },
+  { Icon: Linkedin, href: 'https://www.linkedin.com/company/vivernlab/', label: 'LinkedIn' },
+  { Icon: Instagram, href: 'https://www.instagram.com/vivernlabs?igsh=NGdtaGJ1eGIxdnY=', label: 'Instagram' },
 ];
 
-const Footer = () => {
+const Footer = ({ onNavigate }) => {
   const year = new Date().getFullYear();
 
   return (
@@ -94,11 +92,11 @@ const Footer = () => {
 
         {/* Bottom Row */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-gray-600">&copy; {year} Ai Voice. All rights reserved.</p>
+          <p className="text-xs text-gray-600">&copy; {year} VivernLabs. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-xs text-gray-600 hover:text-gray-400 transition-colors">Privacy Policy</a>
-            <a href="#" className="text-xs text-gray-600 hover:text-gray-400 transition-colors">Terms of Service</a>
-            <a href="#" className="text-xs text-gray-600 hover:text-gray-400 transition-colors">Cookie Policy</a>
+            <button onClick={() => onNavigate('privacy-policy')} className="text-xs text-gray-600 hover:text-gray-400 transition-colors">Privacy Policy</button>
+            <button onClick={() => onNavigate('terms-conditions')} className="text-xs text-gray-600 hover:text-gray-400 transition-colors">Terms of Service</button>
+            <button onClick={() => onNavigate('privacy-policy')} className="text-xs text-gray-600 hover:text-gray-400 transition-colors">Cookie Policy</button>
           </div>
         </div>
       </div>

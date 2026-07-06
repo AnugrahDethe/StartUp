@@ -46,16 +46,19 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Logo */}
-        <motion.a
-          href="#home"
-          className="flex items-center z-50 group"
-          whileHover={{ scale: 1.02 }}
-        >
-          <img src={logoImg} alt="Logo" className="h-24 md:h-28 w-auto -ml-4" />
-        </motion.a>
+        <div className="flex-1">
+          <motion.a
+            href="#home"
+            className="inline-flex items-center z-50 group"
+            whileHover={{ scale: 1.02 }}
+          >
+            <img src={logoImg} alt="Logo" className="h-24 md:h-28 w-auto -ml-4" />
+          </motion.a>
+        </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-1 p-1 glass rounded-full">
+        <div className="flex-1 flex justify-center">
+          <nav className="hidden md:flex items-center gap-1 p-1 glass rounded-full">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -76,42 +79,29 @@ const Navbar = () => {
               </span>
             </a>
           ))}
-        </nav>
-
-        {/* CTA */}
-        <div className="hidden md:flex items-center gap-4">
-          <motion.a
-            href="#contact"
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            className="relative group overflow-hidden px-6 py-2.5 rounded-full font-medium text-sm text-white"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-cyan-500" />
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-            />
-            <span className="relative z-10">Get a Quote</span>
-          </motion.a>
+          </nav>
         </div>
 
         {/* Mobile Toggle */}
-        <motion.button
-          whileTap={{ scale: 0.9 }}
-          className="md:hidden z-50 w-10 h-10 glass rounded-lg flex items-center justify-center text-gray-300"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          <AnimatePresence mode="wait">
-            {mobileMenuOpen ? (
-              <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                <X size={20} />
-              </motion.div>
-            ) : (
-              <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                <Menu size={20} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.button>
+        <div className="flex-1 flex justify-end">
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            className="md:hidden z-50 w-10 h-10 glass rounded-lg flex items-center justify-center text-gray-300"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <AnimatePresence mode="wait">
+              {mobileMenuOpen ? (
+                <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                  <X size={20} />
+                </motion.div>
+              ) : (
+                <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                  <Menu size={20} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -138,16 +128,7 @@ const Navbar = () => {
                   {link.name}
                 </motion.a>
               ))}
-              <motion.a
-                href="#contact"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35 }}
-                onClick={() => setMobileMenuOpen(false)}
-                className="mt-4 py-3 text-center font-semibold rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-500 text-white"
-              >
-                Get a Quote
-              </motion.a>
+
             </div>
           </motion.div>
         )}
