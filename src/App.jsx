@@ -45,10 +45,10 @@ function App() {
       'android-app-dev': 'Android App Development — Our Services',
       'software-development': 'Software Development — Our Services',
       'crm-solutions': 'CRM Solutions — Our Services',
-      'privacy-policy': 'Privacy Policy — Vivernlabss',
-      'terms-conditions': 'Terms & Conditions — Vivernlabss',
+      'privacy-policy': 'Privacy Policy — Vivernlabs',
+      'terms-conditions': 'Terms & Conditions — Vivernlabs',
     };
-    document.title = currentPage ? titles[currentPage] : 'Vivernlabss';
+    document.title = currentPage ? titles[currentPage] : 'Vivernlabs';
   }, [currentPage]);
 
   if (currentPage && SERVICE_PAGES[currentPage]) {
