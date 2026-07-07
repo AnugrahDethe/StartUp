@@ -189,17 +189,7 @@ const SoftwareDevelopment = ({ onBack }) => {
                 Back
               </motion.button>
 
-              <motion.div 
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="hidden md:flex items-center gap-2 text-sm text-gray-400"
-              >
-                <span className="hover:text-white cursor-pointer transition-colors" onClick={onBack}>Home</span>
-                <span>/</span>
-                <span className="hover:text-white cursor-pointer transition-colors" onClick={onBack}>Services</span>
-                <span>/</span>
-                <span className="text-emerald-400">Software Development</span>
-              </motion.div>
+
             </div>
 
             <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -239,23 +229,28 @@ const SoftwareDevelopment = ({ onBack }) => {
               </motion.div>
 
               <motion.div variants={fadeUpVariant} className="relative hidden lg:block">
-                <div className="relative glass border border-white/10 rounded-[2rem] p-4 overflow-hidden shadow-2xl z-10">
-                  <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:2rem_2rem] opacity-50" />
-                  <img 
-                    src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" 
-                    alt="Server Room" 
-                    className="w-full h-auto rounded-xl object-cover mix-blend-luminosity opacity-90 transition-opacity hover:opacity-100"
-                  />
-                </div>
-                <div className="absolute -bottom-6 -left-6 glass border border-white/10 p-4 rounded-2xl z-20 flex items-center gap-4 backdrop-blur-xl shadow-xl">
-                  <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
-                    <Server size={20} />
+                <motion.div
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                >
+                  <div className="relative glass border border-white/10 rounded-[2rem] p-4 overflow-hidden shadow-2xl z-10">
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:2rem_2rem] opacity-50" />
+                    <img 
+                      src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" 
+                      alt="Server Room" 
+                      className="w-full h-auto rounded-xl object-cover mix-blend-luminosity opacity-90 transition-opacity hover:opacity-100"
+                    />
                   </div>
-                  <div>
-                    <div className="text-xs text-gray-400 font-mono">Infrastructure</div>
-                    <div className="text-sm font-bold text-white">All Systems Operational</div>
+                  <div className="absolute -bottom-6 -left-6 glass border border-white/10 p-4 rounded-2xl z-20 flex items-center gap-4 backdrop-blur-xl shadow-xl">
+                    <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+                      <Server size={20} />
+                    </div>
+                    <div>
+                      <div className="text-xs text-gray-400 font-mono">Infrastructure</div>
+                      <div className="text-sm font-bold text-white">All Systems Operational</div>
+                    </div>
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
             </div>
           </div>

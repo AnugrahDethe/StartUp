@@ -67,8 +67,22 @@ const Hero = () => (
 
     {/* Background grids and glows */}
     <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:5rem_5rem] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,#000_30%,transparent_100%)] pointer-events-none" />
-    <div className="absolute top-1/3 left-0 w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[150px] pointer-events-none" />
-    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none" />
+    <motion.div
+      animate={{
+        x: [0, 30, -20, 0],
+        y: [0, -40, 20, 0],
+      }}
+      transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
+      className="absolute top-1/3 left-0 w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[150px] pointer-events-none"
+    />
+    <motion.div
+      animate={{
+        x: [0, -20, 30, 0],
+        y: [0, 30, -10, 0],
+      }}
+      transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+      className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none"
+    />
 
     <div className="container mx-auto px-6 md:px-12 relative z-10">
       <motion.div
@@ -118,16 +132,6 @@ const Hero = () => (
                   Get Started <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </span>
               </motion.a>
-
-              {/* <motion.a
-                href="#seo"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.97 }}
-                className="px-8 py-3.5 rounded-full font-medium text-gray-300 hover:text-white glass glass-hover inline-flex items-center gap-2 transition-all border border-white/10 group"
-              >
-                SEO Analyser
-                <Activity size={18} className="text-cyan-400 group-hover:rotate-12 transition-transform" />
-              </motion.a> */}
             </motion.div>
           </div>
 

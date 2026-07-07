@@ -1,6 +1,6 @@
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useMotionValue, useTransform } from 'framer-motion';
 import { Brain, Globe, Lightbulb, Link, Linkedin, Shield, Sparkles, Target } from 'lucide-react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import AnugrahImg from '../assets/Anugrah.png';
 import ArkamImg from '../assets/Arkam.png';
 
@@ -28,12 +28,115 @@ const founders = [
 
 const staggerContainer = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.15 } }
+  visible: { transition: { staggerChildren: 0.2 } }
 };
 
 const fadeUpVariant = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+};
+
+const FounderCard = ({ founder }) => {
+  const cardRef = useRef(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const [spotlight, setSpotlight] = useState({ x: 50, y: 50, visible: false });
+
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [8, -8]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-8, 8]);
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const nx = (e.clientX - rect.left) / rect.width;
+    const ny = (e.clientY - rect.top) / rect.height;
+    mouseX.set(nx - 0.5);
+    mouseY.set(ny - 0.5);
+    setSpotlight({ x: nx * 100, y: ny * 100, visible: true });
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+    setSpotlight(s => ({ ...s, visible: false }));
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      variants={fadeUpVariant}
+      style={{ rotateX, rotateY, transformPerspective: 1000, transformStyle: 'preserve-3d' }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="group glass rounded-3xl p-8 border border-white/5 relative overflow-hidden text-center shimmer-border shadow-2xl"
+    >
+      {/* Spotlight */}
+      <div
+        className="absolute inset-0 pointer-events-none transition-opacity duration-300"
+        style={{
+          opacity: spotlight.visible ? 1 : 0,
+          background: `radial-gradient(circle at ${spotlight.x}% ${spotlight.y}%, ${founder.accent}20 0%, transparent 60%)`,
+        }}
+      />
+      
+      {/* Background accent */}
+      <div className="absolute top-0 left-0 right-0 h-32 opacity-10 group-hover:opacity-20 transition-opacity duration-500"
+        style={{ background: `linear-gradient(to bottom, ${founder.accent}, transparent)` }}
+      />
+
+      {/* Avatar */}
+      <div className="relative mx-auto w-28 h-28 mb-6 mt-4" style={{ transform: 'translateZ(30px)' }}>
+        <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${founder.gradient} opacity-30 blur-xl group-hover:opacity-60 transition-opacity`} />
+        <motion.div
+          whileHover={{ scale: 1.08 }}
+          className={`relative w-28 h-28 rounded-full bg-gradient-to-br ${founder.gradient} p-[2px]`}
+        >
+          <div className="w-full h-full rounded-full bg-background flex items-center justify-center overflow-hidden">
+            {founder.photo ? (
+              <img
+                src={founder.photo}
+                alt={founder.name}
+                className="w-full h-full object-cover rounded-full"
+              />
+            ) : (
+              <span className="text-4xl font-display font-bold text-white/80">{founder.name[0]}</span>
+            )}
+          </div>
+        </motion.div>
+        {/* Orbiting ring */}
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
+          className="absolute -inset-3 rounded-full border border-dashed opacity-0 group-hover:opacity-40 transition-opacity"
+          style={{ borderColor: founder.accent }}
+        />
+        <div className="absolute bottom-0 right-0 w-8 h-8 rounded-full border-2 border-background flex items-center justify-center"
+          style={{ background: `${founder.accent}20`, borderColor: '#030305' }}>
+          <Sparkles size={12} style={{ color: founder.accent }} />
+        </div>
+      </div>
+
+      <h4 className="text-2xl font-bold text-white mb-1 relative z-10" style={{ transform: 'translateZ(20px)' }}>{founder.name}</h4>
+      <p className="text-sm font-medium mb-5 relative z-10" style={{ color: founder.accent, transform: 'translateZ(20px)' }}>{founder.title}</p>
+      <p className="text-sm text-gray-400 leading-relaxed max-w-xs mx-auto mb-6 relative z-10" style={{ transform: 'translateZ(10px)' }}>{founder.bio}</p>
+
+      {/* Social Links */}
+      {(founder.linkedin || founder.portfolio) && (
+        <div className="flex items-center justify-center gap-4 pt-2 relative z-10" style={{ transform: 'translateZ(15px)' }}>
+          {founder.linkedin && (
+            <a href={founder.linkedin} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-all hover:-translate-y-1">
+              <Linkedin size={20} />
+            </a>
+          )}
+          {founder.portfolio && (
+            <a href={founder.portfolio} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-all hover:-translate-y-1">
+              <Link size={20} />
+            </a>
+          )}
+        </div>
+      )}
+    </motion.div>
+  );
 };
 
 const About = () => {
@@ -175,70 +278,8 @@ const About = () => {
           variants={staggerContainer}
           className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
         >
-          {founders.map((founder, i) => (
-            <motion.div
-              key={founder.name}
-              variants={fadeUpVariant}
-              whileHover={{ y: -8 }}
-              className="group glass rounded-3xl p-8 border border-white/5 relative overflow-hidden text-center shimmer-border"
-            >
-              {/* Background accent */}
-              <div className="absolute top-0 left-0 right-0 h-32 opacity-10 group-hover:opacity-20 transition-opacity duration-500"
-                style={{ background: `linear-gradient(to bottom, ${founder.accent}, transparent)` }}
-              />
-
-              {/* Avatar */}
-              <div className="relative mx-auto w-28 h-28 mb-6 mt-4">
-                <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${founder.gradient} opacity-30 blur-xl group-hover:opacity-60 transition-opacity`} />
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className={`relative w-28 h-28 rounded-full bg-gradient-to-br ${founder.gradient} p-[2px]`}
-                >
-                  <div className="w-full h-full rounded-full bg-background flex items-center justify-center overflow-hidden">
-                    {founder.photo ? (
-                      <img
-                        src={founder.photo}
-                        alt={founder.name}
-                        className="w-full h-full object-cover rounded-full"
-                      />
-                    ) : (
-                      <span className="text-4xl font-display font-bold text-white/80">{founder.initial}</span>
-                    )}
-                  </div>
-                </motion.div>
-                {/* Orbiting ring */}
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
-                  className="absolute -inset-3 rounded-full border border-dashed opacity-0 group-hover:opacity-30 transition-opacity"
-                  style={{ borderColor: founder.accent }}
-                />
-                <div className="absolute bottom-0 right-0 w-8 h-8 rounded-full border-2 border-background flex items-center justify-center"
-                  style={{ background: `${founder.accent}20`, borderColor: '#030305' }}>
-                  <Sparkles size={12} style={{ color: founder.accent }} />
-                </div>
-              </div>
-
-              <h4 className="text-2xl font-bold text-white mb-1">{founder.name}</h4>
-              <p className="text-sm font-medium mb-5" style={{ color: founder.accent }}>{founder.title}</p>
-              <p className="text-sm text-gray-400 leading-relaxed max-w-xs mx-auto mb-6">{founder.bio}</p>
-
-              {/* Social Links */}
-              {(founder.linkedin || founder.portfolio) && (
-                <div className="flex items-center justify-center gap-4 pt-2">
-                  {founder.linkedin && (
-                    <a href={founder.linkedin} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-all hover:-translate-y-1">
-                      <Linkedin size={20} />
-                    </a>
-                  )}
-                  {founder.portfolio && (
-                    <a href={founder.portfolio} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-all hover:-translate-y-1">
-                      <Link size={20} />
-                    </a>
-                  )}
-                </div>
-              )}
-            </motion.div>
+          {founders.map((founder) => (
+            <FounderCard key={founder.name} founder={founder} />
           ))}
         </motion.div>
 

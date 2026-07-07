@@ -1,6 +1,6 @@
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useMotionValue, useTransform } from 'framer-motion';
 import { Monitor, Smartphone, Code2, Users, ArrowRight } from 'lucide-react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const services = [
   {
@@ -60,18 +60,50 @@ const cardVariants = {
 
 const ServiceCard = ({ service, onServiceClick }) => {
   const Icon = service.icon;
+  const cardRef = useRef(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const [spotlight, setSpotlight] = useState({ x: 50, y: 50, visible: false });
+
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [6, -6]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-6, 6]);
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const nx = (e.clientX - rect.left) / rect.width;
+    const ny = (e.clientY - rect.top) / rect.height;
+    mouseX.set(nx - 0.5);
+    mouseY.set(ny - 0.5);
+    setSpotlight({ x: nx * 100, y: ny * 100, visible: true });
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+    setSpotlight(s => ({ ...s, visible: false }));
+  };
+
   return (
     <motion.div
+      ref={cardRef}
       variants={cardVariants}
-      whileHover={{ y: -10, transition: { duration: 0.3 } }}
+      style={{ rotateX, rotateY, transformPerspective: 800, transformStyle: 'preserve-3d' }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       onClick={() => onServiceClick(service.id)}
       className="relative group rounded-3xl glass border border-white/5 p-8 overflow-hidden cursor-pointer shimmer-border select-none"
     >
-      {/* Animated glow on hover */}
-      <motion.div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"
-        style={{ background: `radial-gradient(circle at 50% 0%, ${service.glow} 0%, transparent 60%)` }}
+      {/* Mouse-tracking spotlight */}
+      <div
+        className="absolute inset-0 rounded-3xl pointer-events-none transition-opacity duration-300"
+        style={{
+          opacity: spotlight.visible ? 1 : 0,
+          background: `radial-gradient(circle at ${spotlight.x}% ${spotlight.y}%, ${service.glow} 0%, transparent 65%)`,
+        }}
       />
+
+      {/* Top gradient accent line */}
       <div className={`absolute top-0 left-0 right-0 h-px bg-gradient-to-r ${service.gradient} via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
       {/* Icon */}
@@ -82,7 +114,6 @@ const ServiceCard = ({ service, onServiceClick }) => {
         style={{ background: `${service.accent}18`, border: `1px solid ${service.accent}30` }}
       >
         <Icon size={24} style={{ color: service.accent }} />
-        {/* Ping dot */}
         <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
           style={{ backgroundColor: service.accent }}>
           <span className="absolute inset-0 rounded-full animate-ping" style={{ backgroundColor: service.accent }} />
@@ -97,8 +128,6 @@ const ServiceCard = ({ service, onServiceClick }) => {
         {service.description}
       </p>
 
-
-
       {/* Explore link */}
       <div
         className="flex items-center gap-1.5 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0"
@@ -108,7 +137,7 @@ const ServiceCard = ({ service, onServiceClick }) => {
       </div>
 
       {/* Bottom glow line */}
-      <motion.div
+      <div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 h-px w-0 group-hover:w-4/5 transition-all duration-500 rounded-full"
         style={{ background: `linear-gradient(to right, transparent, ${service.accent}, transparent)` }}
       />

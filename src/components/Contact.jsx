@@ -61,9 +61,24 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-32 relative border-t border-white/[0.03]">
-      {/* Glow */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-500/3 to-transparent pointer-events-none" />
+    <section id="contact" className="py-20 md:py-32 relative border-t border-white/[0.03] overflow-hidden">
+      {/* Floating Background Glows */}
+      <motion.div
+        animate={{
+          y: [0, -20, 0],
+          opacity: [0.3, 0.6, 0.3],
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none translate-x-1/3 -translate-y-1/3"
+      />
+      <motion.div
+        animate={{
+          y: [0, 20, 0],
+          opacity: [0.2, 0.5, 0.2],
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+        className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none -translate-x-1/3 translate-y-1/3"
+      />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
@@ -89,16 +104,25 @@ const Contact = () => {
               Ready to transform your idea into a live, AI-powered product? <br></br>Drop us a message we respond within 24 hours.<br />
             </p>
 
-            <div className="space-y-6">
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={{
+                hidden: {},
+                show: { transition: { staggerChildren: 0.15 } }
+              }}
+              className="space-y-6"
+            >
               {contactMethods.map((method, i) => {
                 const Icon = method.icon;
                 return (
                   <motion.div
                     key={method.label}
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.12, duration: 0.6 }}
+                    variants={{
+                      hidden: { opacity: 0, x: -30 },
+                      show: { opacity: 1, x: 0, transition: { duration: 0.6 } }
+                    }}
                     whileHover={{ x: 6 }}
                     className="group flex items-center gap-5 cursor-pointer"
                   >
@@ -113,7 +137,7 @@ const Contact = () => {
                   </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Right — Form */}
