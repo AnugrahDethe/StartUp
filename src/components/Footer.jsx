@@ -29,7 +29,7 @@ const Footer = ({ onNavigate }) => {
           {/* Brand */}
           <div className="max-w-xs">
             <a href="#home" className="flex items-center mb-5">
-              <img src={logoImg} alt="Logo" className="h-32 md:h-36 w-auto -ml-4" />
+              <img src={logoImg} alt="Logo" className="h-24 sm:h-24 md:h-28 lg:h-32 w-auto -ml-2 md:-ml-4" />
             </a>
             <p className="text-sm text-gray-500 leading-relaxed">
               Engineering the future of digital solutions with artificial intelligence — one product at a time.

@@ -50,7 +50,7 @@ const Navbar = () => {
             className="inline-flex items-center z-50 group"
             whileHover={{ scale: 1.02 }}
           >
-            <img src={logoImg} alt="Logo" className="h-32 md:h-36 w-auto -ml-4" />
+            <img src={logoImg} alt="Logo" className="h-24 sm:h-24 md:h-28 lg:h-32 w-auto -ml-2 md:-ml-4" />
           </motion.a>
         </div>
 

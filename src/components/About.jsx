@@ -46,7 +46,7 @@ const About = () => {
   const inViewFounders = useInView(refFounders, { once: true, amount: 0.2 });
 
   return (
-    <section id="about" className="py-32 relative overflow-hidden bg-[#030305]">
+    <section id="about" className="py-20 md:py-32 relative overflow-hidden bg-[#030305]">
       {/* Ambient glows */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-[120px] translate-x-1/2 -translate-y-1/2 pointer-events-none" />
       <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[120px] -translate-x-1/3 pointer-events-none" />
@@ -75,9 +75,9 @@ const About = () => {
           initial="hidden"
           animate={inViewStory ? "visible" : "hidden"}
           variants={staggerContainer}
-          className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-24"
+          className="grid lg:grid-cols-12 gap-10 lg:gap-20 items-start mb-16 lg:mb-24"
         >
-          <motion.div variants={fadeUpVariant} className="lg:col-span-5 sticky top-32">
+          <motion.div variants={fadeUpVariant} className="lg:col-span-5 lg:sticky top-32">
             <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-white mb-6">
               Mission and Vision  <br className="hidden lg:block" /> the <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Road Ahead</span>
             </h3>
@@ -103,7 +103,7 @@ const About = () => {
           initial="hidden"
           animate={inViewCards ? "visible" : "hidden"}
           variants={staggerContainer}
-          className="grid md:grid-cols-3 gap-6 mb-32"
+          className="grid md:grid-cols-3 gap-6 mb-16 lg:mb-32"
         >
           {/* Mission Card */}
           <motion.div variants={fadeUpVariant} className="glass rounded-3xl p-8 lg:p-10 border border-white/5 relative overflow-hidden group hover:border-blue-500/30 transition-colors">

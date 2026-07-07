@@ -55,12 +55,12 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-32 relative border-t border-white/[0.03]">
+    <section id="contact" className="py-20 md:py-32 relative border-t border-white/[0.03]">
       {/* Glow */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-500/3 to-transparent pointer-events-none" />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-20">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
 
           {/* Left — Info */}
           <motion.div
@@ -160,7 +160,7 @@ const Contact = () => {
                     className="relative z-10 flex flex-col gap-6"
                   >
                     {/* Name & Email row */}
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {formFields.map(f => (
                         <div key={f.id} className="flex flex-col gap-2">
                           <label className="text-xs font-medium text-gray-400 uppercase tracking-wider">{f.label}</label>

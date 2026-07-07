@@ -63,7 +63,7 @@ const item = {
 };
 
 const Hero = () => (
-  <section id="home" className="relative min-h-screen flex items-center pt-32 pb-24 overflow-hidden bg-[#030305]">
+  <section id="home" className="relative min-h-screen flex items-center pt-24 sm:pt-28 md:pt-32 pb-16 md:pb-24 overflow-hidden bg-[#030305]">
 
     {/* Background grids and glows */}
     <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:5rem_5rem] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,#000_30%,transparent_100%)] pointer-events-none" />
@@ -77,7 +77,7 @@ const Hero = () => (
         animate="show"
         className="max-w-7xl mx-auto"
       >
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-12 lg:mb-20">
           
           {/* Left Column: Text & CTA */}
           <div className="text-center md:text-left">
@@ -89,7 +89,7 @@ const Hero = () => (
 
             <motion.h1
               variants={item}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 text-white"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 text-white"
             >
               Building Intelligent <br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Software</span> for <br className="hidden md:block" />

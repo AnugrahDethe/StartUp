@@ -121,7 +121,7 @@ const Services = ({ onServiceClick }) => {
   const inView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
-    <section id="services" className="py-32 relative overflow-hidden">
+    <section id="services" className="py-20 md:py-32 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:6rem_6rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_20%,transparent_100%)] pointer-events-none" />
 
@@ -144,7 +144,7 @@ const Services = ({ onServiceClick }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-5xl md:text-7xl lg:text-[82px] font-bold leading-[1.05] mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-[82px] font-bold leading-[1.05] mb-6"
           >
             Our <span className="text-gradient">Services</span>
           </motion.h2>

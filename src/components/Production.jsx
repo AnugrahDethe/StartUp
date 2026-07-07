@@ -120,7 +120,7 @@ const ProjectCard = ({ project, index }) => {
 };
 
 const Production = () => (
-  <section id="production" className="py-32 relative bg-black/20 border-t border-white/[0.03]">
+  <section id="production" className="py-20 md:py-32 relative bg-black/20 border-t border-white/[0.03]">
     <div className="container mx-auto px-6 md:px-12">
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-20">
