@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const contactMethods = [
   {
-    icon: Mail, label: 'Email Us', value: 'anugrahdethe10@gmail.com',
+    icon: Mail, label: 'Email Us', value: 'info@vivernlab.com',
     accent: '#6366F1', gradient: 'from-indigo-500/20 to-transparent',
   },
   {
@@ -30,26 +30,32 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('submitting');
-    
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
+
     try {
-      const response = await fetch("https://formsubmit.co/ajax/anugrahdethe10@gmail.com", {
+      const response = await fetch("https://formsubmit.co/ajax/info@vivernlab.com", {
         method: "POST",
-        headers: { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
-        body: JSON.stringify(formState)
+        body: JSON.stringify({ ...formState, _cc: 'anugrahdethe10@gmail.com' }),
+        signal: controller.signal,
       });
+      clearTimeout(timeoutId);
 
       if (response.ok) {
         setStatus('success');
         setFormState({ name: '', email: '', service: '', message: '' });
       } else {
-        console.error("Form submission failed");
+        console.error('Form submission failed', response.status);
         setStatus('idle');
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
+      clearTimeout(timeoutId);
+      console.error('Error submitting form:', error);
       setStatus('idle');
     }
   };
@@ -80,7 +86,7 @@ const Contact = () => {
               Extraordinary.
             </h2>
             <p className="text-gray-400 text-lg mb-14 max-w-md leading-relaxed">
-              Ready to transform your idea into a live, AI-powered product? Drop us a message — we respond within 24 hours.
+              Ready to transform your idea into a live, AI-powered product? <br></br>Drop us a message we respond within 24 hours.<br />
             </p>
 
             <div className="space-y-6">
