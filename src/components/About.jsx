@@ -1,7 +1,8 @@
 import { motion, useInView } from 'framer-motion';
-import AnugrahImg from '../assets/Anugrah.png';
-import { Sparkles, Brain, Target, Globe, Shield, Lightbulb, Users, Linkedin, Link } from 'lucide-react';
+import { Brain, Globe, Lightbulb, Link, Linkedin, Shield, Sparkles, Target } from 'lucide-react';
 import { useRef } from 'react';
+import AnugrahImg from '../assets/Anugrah.png';
+import ArkamImg from '../assets/Arkam.png';
 
 const founders = [
   {
@@ -16,12 +17,12 @@ const founders = [
   },
   {
     name: 'Arkam',
-    title: 'Co-Founder & CTO',
+    title: 'Co-Founder & Data Scientist',
     bio: 'Technical architect specialising in high performance systems, intelligent APIs, and beautiful, precision-crafted frontend experiences.',
     accent: '#06B6D4',
     gradient: 'from-cyan-500 to-blue-600',
-    photo: null,
-    initial: 'K',
+    photo: ArkamImg,
+    linkedin: 'https://www.linkedin.com/in/arkamdayanji/',
   },
 ];
 
