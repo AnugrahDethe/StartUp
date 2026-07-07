@@ -60,10 +60,10 @@ const About = () => {
           viewport={{ once: true }}
           className="text-center mb-24"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/5 mb-6">
+          {/* <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/5 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
             <span className="text-xs font-medium text-gray-400 tracking-widest uppercase">Vivernlabs</span>
-          </div>
+          </div> */}
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold">
             About <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Us</span>
           </h2>

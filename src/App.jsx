@@ -62,7 +62,7 @@ function App() {
       <main>
         <Hero />
         <Services onServiceClick={navigateTo} />
-        <Production />
+        {/* <Production /> */}
         <About />
         <Contact />
       </main>

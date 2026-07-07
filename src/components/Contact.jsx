@@ -69,10 +69,10 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/5 mb-8">
+            {/* <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/5 mb-8">
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-xs font-medium text-gray-400 tracking-widest uppercase">Open for Projects</span>
-            </div>
+            </div> */}
 
             <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
               Let's Build <br />
