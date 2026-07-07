@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const contactMethods = [
   {
-    icon: Mail, label: 'Email Us', value: 'Vivernlabs@com',
+    icon: Mail, label: 'Email Us', value: 'anugrahdethe10@gmail.com',
     accent: '#6366F1', gradient: 'from-indigo-500/20 to-transparent',
   },
   {
@@ -30,8 +30,28 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('submitting');
-    await new Promise(r => setTimeout(r, 1800));
-    setStatus('success');
+    
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/anugrahdethe10@gmail.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(formState)
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setFormState({ name: '', email: '', service: '', message: '' });
+      } else {
+        console.error("Form submission failed");
+        setStatus('idle');
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setStatus('idle');
+    }
   };
 
   return (
