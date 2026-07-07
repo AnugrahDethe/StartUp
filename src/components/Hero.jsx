@@ -119,7 +119,7 @@ const Hero = () => (
                 </span>
               </motion.a>
 
-              <motion.a
+              {/* <motion.a
                 href="#seo"
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
@@ -127,7 +127,7 @@ const Hero = () => (
               >
                 SEO Analyser
                 <Activity size={18} className="text-cyan-400 group-hover:rotate-12 transition-transform" />
-              </motion.a>
+              </motion.a> */}
             </motion.div>
           </div>
 
