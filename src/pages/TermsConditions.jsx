@@ -49,12 +49,12 @@ const TermsConditions = ({ onBack }) => {
 
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Acceptance</h2>
-                <p>By accessing or using Vivernlabs's website or services, you agree to these Terms & Conditions.</p>
+                <p>By accessing or using Vivernlab's website or services, you agree to these Terms & Conditions.</p>
               </section>
 
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Services</h2>
-                <p>Vivernlabs provides services including:</p>
+                <p>Vivernlab provides services including:</p>
                 <ul className="list-disc pl-5 space-y-2 mt-2 text-gray-400 marker:text-indigo-500">
                   <li>Website Development</li>
                   <li>Mobile App Development</li>
@@ -83,7 +83,7 @@ const TermsConditions = ({ onBack }) => {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Intellectual Property</h2>
                 <p>Upon receipt of the final payment, ownership of the completed project is transferred to the client unless otherwise specified in the agreement.</p>
-                <p>Vivernlabs may showcase completed projects in its portfolio unless the client requests confidentiality in writing.</p>
+                <p>Vivernlab may showcase completed projects in its portfolio unless the client requests confidentiality in writing.</p>
               </section>
 
               <section>
@@ -105,7 +105,7 @@ const TermsConditions = ({ onBack }) => {
 
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Limitation of Liability</h2>
-                <p>Vivernlabs is not responsible for indirect or consequential damages arising from the use of our services.</p>
+                <p>Vivernlab is not responsible for indirect or consequential damages arising from the use of our services.</p>
               </section>
 
               <section>

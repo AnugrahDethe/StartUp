@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Linkedin, Instagram, ArrowUpRight } from 'lucide-react';
-import logoImg from '../assets/logo.png';
+import logoImg from '../assets/logo2.jpeg';
 
 const footerLinks = [
   { name: 'Home', href: '#home' },
@@ -10,8 +10,8 @@ const footerLinks = [
 ];
 
 const socials = [
-  { Icon: Linkedin, href: 'https://www.linkedin.com/company/Vivernlabs/', label: 'LinkedIn' },
-  { Icon: Instagram, href: 'https://www.instagram.com/Vivernlabs?igsh=NGdtaGJ1eGIxdnY=', label: 'Instagram' },
+  { Icon: Linkedin, href: 'https://www.linkedin.com/company/Vivernlab/', label: 'LinkedIn' },
+  { Icon: Instagram, href: 'https://www.instagram.com/Vivernlab?igsh=NGdtaGJ1eGIxdnY=', label: 'Instagram' },
 ];
 
 const Footer = ({ onNavigate }) => {
@@ -29,7 +29,7 @@ const Footer = ({ onNavigate }) => {
           {/* Brand */}
           <div className="max-w-xs">
             <a href="#home" className="flex items-center mb-5">
-              <img src={logoImg} alt="Logo" className="h-24 md:h-28 w-auto -ml-4" />
+              <img src={logoImg} alt="Logo" className="h-32 md:h-36 w-auto -ml-4" />
             </a>
             <p className="text-sm text-gray-500 leading-relaxed">
               Engineering the future of digital solutions with artificial intelligence — one product at a time.
@@ -91,7 +91,7 @@ const Footer = ({ onNavigate }) => {
 
         {/* Bottom Row */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-gray-600">&copy; {year} Vivernlabs. All rights reserved.</p>
+          <p className="text-xs text-gray-600">&copy; {year} Vivernlab. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <button onClick={() => onNavigate('privacy-policy')} className="text-xs text-gray-600 hover:text-gray-400 transition-colors">Privacy Policy</button>
             <button onClick={() => onNavigate('terms-conditions')} className="text-xs text-gray-600 hover:text-gray-400 transition-colors">Terms of Service</button>

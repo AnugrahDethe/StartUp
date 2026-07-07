@@ -49,7 +49,7 @@ const PrivacyPolicy = ({ onBack }) => {
 
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Introduction</h2>
-                <p>Welcome to Vivernlabs.</p>
+                <p>Welcome to Vivernlab.</p>
                 <p>We value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and protect the information you provide when using our website or contacting us.</p>
               </section>
 

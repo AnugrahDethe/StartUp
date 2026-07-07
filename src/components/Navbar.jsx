@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import logoImg from '../assets/logo.png';
+import logoImg from '../assets/logo2.jpeg';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -37,11 +37,10 @@ const Navbar = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? 'py-3 glass border-b border-white/5'
-          : 'py-6 bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+        ? 'py-3 glass border-b border-white/5'
+        : 'py-6 bg-transparent'
+        }`}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Logo */}
@@ -51,33 +50,32 @@ const Navbar = () => {
             className="inline-flex items-center z-50 group"
             whileHover={{ scale: 1.02 }}
           >
-            <img src={logoImg} alt="Logo" className="h-24 md:h-28 w-auto -ml-4" />
+            <img src={logoImg} alt="Logo" className="h-32 md:h-36 w-auto -ml-4" />
           </motion.a>
         </div>
 
         {/* Desktop Nav */}
         <div className="flex-1 flex justify-center">
           <nav className="hidden md:flex items-center gap-1 p-1 glass rounded-full">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="relative px-5 py-2 text-sm font-medium rounded-full transition-colors"
-            >
-              {activeSection === link.href.slice(1) && (
-                <motion.div
-                  layoutId="nav-pill"
-                  className="absolute inset-0 bg-white/10 rounded-full"
-                  transition={{ type: 'spring', stiffness: 400, damping: 40 }}
-                />
-              )}
-              <span className={`relative z-10 transition-colors ${
-                activeSection === link.href.slice(1) ? 'text-white' : 'text-gray-400 hover:text-gray-200'
-              }`}>
-                {link.name}
-              </span>
-            </a>
-          ))}
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="relative px-5 py-2 text-sm font-medium rounded-full transition-colors"
+              >
+                {activeSection === link.href.slice(1) && (
+                  <motion.div
+                    layoutId="nav-pill"
+                    className="absolute inset-0 bg-white/10 rounded-full"
+                    transition={{ type: 'spring', stiffness: 400, damping: 40 }}
+                  />
+                )}
+                <span className={`relative z-10 transition-colors ${activeSection === link.href.slice(1) ? 'text-white' : 'text-gray-400 hover:text-gray-200'
+                  }`}>
+                  {link.name}
+                </span>
+              </a>
+            ))}
           </nav>
         </div>
 
