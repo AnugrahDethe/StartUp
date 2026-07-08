@@ -94,7 +94,7 @@ const ServiceCard = ({ service, onServiceClick, index, scrollYProgress }) => {
       onMouseLeave={handleMouseLeave}
       onMouseEnter={() => setHovered(true)}
       onClick={() => onServiceClick(service.id)}
-      className="relative group rounded-3xl border border-white/5 p-8 overflow-hidden cursor-pointer select-none bg-black/20 backdrop-blur-md h-full min-h-[400px] flex flex-col items-start"
+      className="relative group rounded-3xl border border-white/5 p-6 overflow-hidden cursor-pointer select-none bg-black/20 backdrop-blur-md h-full min-h-[340px] flex flex-col items-start"
     >
       {/* Mouse spotlight */}
       <div
@@ -114,21 +114,17 @@ const ServiceCard = ({ service, onServiceClick, index, scrollYProgress }) => {
         <motion.div
           whileHover={{ rotate: [0, -10, 10, 0], scale: 1.15 }}
           transition={{ duration: 0.5 }}
-          className="w-14 h-14 rounded-2xl flex items-center justify-center mb-7 relative"
+          className="w-12 h-12 rounded-2xl flex items-center justify-center mb-7 relative"
           style={{ background: `${service.accent}20`, border: `1px solid ${service.accent}40` }}
         >
-          <Icon size={24} style={{ color: service.accent }} />
+          <Icon size={20} style={{ color: service.accent }} />
           <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
             style={{ backgroundColor: service.accent }}>
             <span className="absolute inset-0 rounded-full animate-ping" style={{ backgroundColor: service.accent }} />
           </span>
         </motion.div>
 
-        {/* Tag */}
-        <div className="text-[10px] font-mono tracking-widest mb-3 px-2 py-1 rounded-md inline-block"
-          style={{ color: service.accent, background: `${service.accent}15`, border: `1px solid ${service.accent}25` }}>
-          {service.tag}
-        </div>
+
 
         <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-gradient transition-all duration-300">
           {service.title}
