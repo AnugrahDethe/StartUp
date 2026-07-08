@@ -156,7 +156,7 @@ const Hero = () => {
                 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.08] mb-6 text-white"
               >
                 Building{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-400 to-violet-400">
+                <span className="text-gradient">
                   Intelligent
                 </span>
                 <br className="hidden md:block" />
