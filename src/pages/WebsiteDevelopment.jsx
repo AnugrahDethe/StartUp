@@ -155,7 +155,7 @@ const WebsiteDevelopment = ({ onBack }) => {
   const inViewMethodology = useInView(refMethodology, { once: true, amount: 0.2 });
 
   return (
-    <div className="min-h-screen bg-[#030305] text-gray-200 overflow-x-hidden selection:bg-indigo-500/30">
+    <div className="min-h-screen text-gray-200 overflow-x-hidden selection:bg-indigo-500/30">
 
       {/* Dynamic Backgrounds */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -482,7 +482,7 @@ const WebsiteDevelopment = ({ onBack }) => {
                       {/* Circle */}
                       <motion.div 
                         whileHover={{ scale: 1.1, rotate: 5 }}
-                        className="w-24 h-24 rounded-full glass border-2 border-white/10 flex items-center justify-center bg-[#030305] mb-6 relative group-hover:border-indigo-500/50 transition-colors shadow-xl"
+                        className="w-24 h-24 rounded-full glass border-2 border-white/10 flex items-center justify-center bg-black/50 mb-6 relative group-hover:border-indigo-500/50 transition-colors shadow-xl"
                       >
                         <span className="text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-cyan-400 transition-all">
                           {step.step}

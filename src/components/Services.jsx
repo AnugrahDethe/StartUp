@@ -1,4 +1,4 @@
-import { motion, useInView, useMotionValue, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion';
 import { Monitor, Smartphone, Code2, Users, ArrowRight } from 'lucide-react';
 import { useRef, useState } from 'react';
 
@@ -9,8 +9,9 @@ const services = [
     description: 'Pixel-perfect, high-performance web experiences that load fast, rank well, and convert visitors into loyal customers.',
     icon: Monitor,
     accent: '#6366F1',
-    glow: 'rgba(99, 102, 241, 0.15)',
-    gradient: 'from-indigo-500/20 to-transparent',
+    glow: 'rgba(99, 102, 241, 0.2)',
+    gradient: 'from-indigo-500/25 via-indigo-500/5 to-transparent',
+    border: 'rgba(99,102,241,0.3)',
     tag: 'React • Next.js • SEO',
   },
   {
@@ -19,8 +20,9 @@ const services = [
     description: 'Native and cross-platform mobile apps with buttery-smooth UX, powerful offline support, and AI-enhanced features.',
     icon: Smartphone,
     accent: '#06B6D4',
-    glow: 'rgba(6, 182, 212, 0.15)',
-    gradient: 'from-cyan-500/20 to-transparent',
+    glow: 'rgba(6, 182, 212, 0.2)',
+    gradient: 'from-cyan-500/25 via-cyan-500/5 to-transparent',
+    border: 'rgba(6,182,212,0.3)',
     tag: 'React Native • Kotlin',
   },
   {
@@ -29,8 +31,9 @@ const services = [
     description: 'Scalable, AI-powered backend systems, APIs, and automation pipelines that eliminate bottlenecks and drive growth.',
     icon: Code2,
     accent: '#8B5CF6',
-    glow: 'rgba(139, 92, 246, 0.15)',
-    gradient: 'from-violet-500/20 to-transparent',
+    glow: 'rgba(139, 92, 246, 0.2)',
+    gradient: 'from-violet-500/25 via-violet-500/5 to-transparent',
+    border: 'rgba(139,92,246,0.3)',
     tag: 'Python • Node • AI/ML',
   },
   {
@@ -39,34 +42,27 @@ const services = [
     description: 'Intelligent customer pipelines that automate lead scoring, outreach, and reporting — your always-on sales team.',
     icon: Users,
     accent: '#10B981',
-    glow: 'rgba(16, 185, 129, 0.15)',
-    gradient: 'from-emerald-500/20 to-transparent',
+    glow: 'rgba(16, 185, 129, 0.2)',
+    gradient: 'from-emerald-500/25 via-emerald-500/5 to-transparent',
+    border: 'rgba(16,185,129,0.3)',
     tag: 'Automation • Analytics',
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 50, scale: 0.95 },
-  visible: {
-    opacity: 1, y: 0, scale: 1,
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
-  },
-};
-
-const ServiceCard = ({ service, onServiceClick }) => {
+const ServiceCard = ({ service, onServiceClick, index, scrollYProgress }) => {
   const Icon = service.icon;
   const cardRef = useRef(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const [spotlight, setSpotlight] = useState({ x: 50, y: 50, visible: false });
+  const [hovered, setHovered] = useState(false);
 
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], [6, -6]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-6, 6]);
+  // Staggered parallax for each card based on its index
+  const yOffset = useTransform(scrollYProgress, [0, 1], [150 + index * 80, -100 - index * 40]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0.5]);
+
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [12, -12]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-12, 12]);
 
   const handleMouseMove = (e) => {
     if (!cardRef.current) return;
@@ -82,125 +78,131 @@ const ServiceCard = ({ service, onServiceClick }) => {
     mouseX.set(0);
     mouseY.set(0);
     setSpotlight(s => ({ ...s, visible: false }));
+    setHovered(false);
   };
 
   return (
     <motion.div
       ref={cardRef}
-      variants={cardVariants}
-      style={{ rotateX, rotateY, transformPerspective: 800, transformStyle: 'preserve-3d' }}
+      style={{
+        y: yOffset,
+        opacity,
+        rotateX, rotateY,
+        transformPerspective: 1200,
+        transformStyle: 'preserve-3d',
+        boxShadow: hovered
+          ? `0 35px 70px -15px ${service.glow}, 0 0 0 1px ${service.border}`
+          : '0 10px 30px rgba(0,0,0,0.5)',
+        transition: 'box-shadow 0.4s ease',
+      }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onMouseEnter={() => setHovered(true)}
       onClick={() => onServiceClick(service.id)}
-      className="relative group rounded-3xl glass border border-white/5 p-8 overflow-hidden cursor-pointer shimmer-border select-none"
+      className="relative group rounded-3xl border border-white/5 p-8 overflow-hidden cursor-pointer select-none bg-black/20 backdrop-blur-md"
     >
-      {/* Mouse-tracking spotlight */}
+      {/* Mouse spotlight */}
       <div
-        className="absolute inset-0 rounded-3xl pointer-events-none transition-opacity duration-300"
+        className="absolute inset-0 rounded-3xl pointer-events-none transition-opacity duration-300 z-0"
         style={{
           opacity: spotlight.visible ? 1 : 0,
-          background: `radial-gradient(circle at ${spotlight.x}% ${spotlight.y}%, ${service.glow} 0%, transparent 65%)`,
+          background: `radial-gradient(circle at ${spotlight.x}% ${spotlight.y}%, ${service.glow} 0%, transparent 70%)`,
         }}
       />
 
-      {/* Top gradient accent line */}
-      <div className={`absolute top-0 left-0 right-0 h-px bg-gradient-to-r ${service.gradient} via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+      {/* Top gradient accent */}
+      <div className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10`} />
 
-      {/* Icon */}
-      <motion.div
-        whileHover={{ rotate: [0, -10, 10, 0], scale: 1.15 }}
-        transition={{ duration: 0.5 }}
-        className="w-14 h-14 rounded-2xl flex items-center justify-center mb-7 relative"
-        style={{ background: `${service.accent}18`, border: `1px solid ${service.accent}30` }}
-      >
-        <Icon size={24} style={{ color: service.accent }} />
-        <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-          style={{ backgroundColor: service.accent }}>
-          <span className="absolute inset-0 rounded-full animate-ping" style={{ backgroundColor: service.accent }} />
-        </span>
-      </motion.div>
+      {/* Content (lifted via translateZ for 3D depth) */}
+      <div className="relative z-20" style={{ transform: 'translateZ(30px)' }}>
+        {/* Icon */}
+        <motion.div
+          whileHover={{ rotate: [0, -10, 10, 0], scale: 1.15 }}
+          transition={{ duration: 0.5 }}
+          className="w-14 h-14 rounded-2xl flex items-center justify-center mb-7 relative"
+          style={{ background: `${service.accent}20`, border: `1px solid ${service.accent}40` }}
+        >
+          <Icon size={24} style={{ color: service.accent }} />
+          <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+            style={{ backgroundColor: service.accent }}>
+            <span className="absolute inset-0 rounded-full animate-ping" style={{ backgroundColor: service.accent }} />
+          </span>
+        </motion.div>
 
-      {/* Content */}
-      <h3 className="text-xl font-bold mb-3 text-white group-hover:text-gradient transition-all duration-300">
-        {service.title}
-      </h3>
-      <p className="text-sm text-gray-400 leading-relaxed mb-6">
-        {service.description}
-      </p>
+        {/* Tag */}
+        <div className="text-[10px] font-mono tracking-widest mb-3 px-2 py-1 rounded-md inline-block"
+          style={{ color: service.accent, background: `${service.accent}15`, border: `1px solid ${service.accent}25` }}>
+          {service.tag}
+        </div>
 
-      {/* Explore link */}
-      <div
-        className="flex items-center gap-1.5 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0"
-        style={{ color: service.accent }}
-      >
-        Learn More <ArrowRight size={13} />
+        <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-gradient transition-all duration-300">
+          {service.title}
+        </h3>
+        <p className="text-sm text-gray-400 leading-relaxed mb-6 font-light">
+          {service.description}
+        </p>
+
+        {/* CTA */}
+        <div
+          className="flex items-center gap-1.5 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0"
+          style={{ color: service.accent }}
+        >
+          Explore Service <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+        </div>
       </div>
-
-      {/* Bottom glow line */}
-      <div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 h-px w-0 group-hover:w-4/5 transition-all duration-500 rounded-full"
-        style={{ background: `linear-gradient(to right, transparent, ${service.accent}, transparent)` }}
-      />
     </motion.div>
   );
 };
 
 const Services = ({ onServiceClick }) => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, amount: 0.1 });
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const yHeader = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
+  const opacityHeader = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
 
   return (
-    <section id="services" className="py-20 md:py-32 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:6rem_6rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_20%,transparent_100%)] pointer-events-none" />
+    <section id="services" ref={containerRef} className="py-24 md:py-32 relative overflow-hidden">
+      {/* Background grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:6rem_6rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_20%,transparent_100%)] pointer-events-none" />
+
+      {/* Section ambient glow */}
+      <motion.div 
+        style={{ opacity: scrollYProgress }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-indigo-500/5 rounded-full blur-[140px] pointer-events-none" 
+      />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          {/* <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/5 mb-6"
-          >
-            <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
-            <span className="text-xs font-medium text-gray-400 tracking-widest uppercase">What We Build</span>
-          </motion.div> */}
-
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-[82px] font-bold leading-[1.05] mb-6"
-          >
-            Our <span className="text-gradient">Services</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-gray-400 text-lg leading-relaxed"
-          >
-            We leverage cutting-edge AI and modern frameworks to deliver solutions that put your business years ahead of the competition.
-            <span className="block mt-2 text-sm text-gray-500">Click any service to explore it in depth →</span>
-          </motion.p>
-        </div>
-
-        {/* Cards Grid */}
-        <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        {/* Header with Parallax */}
+        <motion.div 
+          style={{ y: yHeader, opacity: opacityHeader }}
+          className="text-center max-w-3xl mx-auto mb-24"
         >
-          {services.map((service) => (
-            <ServiceCard key={service.title} service={service} onServiceClick={onServiceClick} />
-          ))}
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-bold leading-[1.05] mb-6">
+            Our <span className="text-gradient">Services</span>
+          </h2>
+          <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed">
+            We leverage cutting-edge AI and modern frameworks to deliver solutions that put your
+            business years ahead of the competition.
+            <span className="block mt-4 text-sm text-indigo-400/80 font-medium tracking-wide uppercase">Click any service to explore it in depth →</span>
+          </p>
         </motion.div>
+
+        {/* Cards Grid with individual Parallax */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {services.map((service, index) => (
+            <ServiceCard 
+              key={service.id} 
+              service={service} 
+              index={index} 
+              onServiceClick={onServiceClick} 
+              scrollYProgress={scrollYProgress}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

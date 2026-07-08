@@ -8,7 +8,7 @@ const TermsConditions = ({ onBack }) => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#030305] text-gray-200">
+    <div className="min-h-screen text-gray-200">
       {/* Navbar space / header */}
       <div className="fixed top-0 left-0 right-0 z-50 py-4 glass border-b border-white/5">
         <div className="container mx-auto px-6 flex items-center justify-between">

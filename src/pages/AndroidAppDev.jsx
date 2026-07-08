@@ -156,7 +156,7 @@ const AndroidAppDev = ({ onBack }) => {
   const inViewMethodology = useInView(refMethodology, { once: true, amount: 0.2 });
 
   return (
-    <div className="min-h-screen bg-[#030305] text-gray-200 overflow-x-hidden selection:bg-blue-500/30">
+    <div className="min-h-screen text-gray-200 overflow-x-hidden selection:bg-blue-500/30">
 
       {/* Dynamic Backgrounds */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -386,7 +386,7 @@ const AndroidAppDev = ({ onBack }) => {
                   const Icon = step.icon;
                   return (
                     <motion.div key={idx} initial={{ opacity: 0, y: 50, scale: 0.9 }} animate={inViewMethodology ? { opacity: 1, y: 0, scale: 1 } : {}} transition={{ delay: 0.5 + (idx * 0.2), type: "spring", stiffness: 100, damping: 12 }} className="flex flex-col items-center text-center group">
-                      <motion.div whileHover={{ scale: 1.1, rotate: 5 }} className="w-24 h-24 rounded-full glass border-2 border-white/10 flex items-center justify-center bg-[#030305] mb-6 relative group-hover:border-blue-500/50 transition-colors shadow-xl">
+                      <motion.div whileHover={{ scale: 1.1, rotate: 5 }} className="w-24 h-24 rounded-full glass border-2 border-white/10 flex items-center justify-center bg-black/50 mb-6 relative group-hover:border-blue-500/50 transition-colors shadow-xl">
                         <span className="text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-cyan-400 transition-all">{step.step}</span>
                         <motion.div initial={{ scale: 0 }} animate={inViewMethodology ? { scale: 1 } : { scale: 0 }} transition={{ delay: 1 + (idx * 0.2), type: "spring", bounce: 0.5 }} className="absolute -bottom-2 -right-2 w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white border-4 border-[#030305] group-hover:animate-pulse">
                           <Icon size={18} />
