@@ -100,19 +100,8 @@ const Navbar = () => {
           </nav>
         </div>
 
-        {/* CTA + Mobile Toggle */}
+        {/* Mobile Toggle */}
         <div className="flex-1 flex justify-end items-center gap-3">
-          {/* Desktop CTA */}
-          <motion.a
-            href="#contact"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="hidden md:inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-indigo-500 to-cyan-500 shadow-lg shadow-indigo-500/20"
-          >
-            Get Started
-          </motion.a>
-
-          {/* Mobile Toggle */}
           <motion.button
             whileTap={{ scale: 0.9 }}
             className="md:hidden z-50 w-10 h-10 rounded-xl bg-white/[0.05] backdrop-blur-xl border border-white/[0.07] flex items-center justify-center text-gray-300"
@@ -157,16 +146,6 @@ const Navbar = () => {
                   {link.name}
                 </motion.a>
               ))}
-              <motion.a
-                href="#contact"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navLinks.length * 0.06 }}
-                className="mt-2 py-3 px-4 text-center text-white font-semibold rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-500"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Get Started
-              </motion.a>
             </div>
           </motion.div>
         )}

@@ -57,9 +57,6 @@ const ServiceCard = ({ service, onServiceClick, index, scrollYProgress }) => {
   const [spotlight, setSpotlight] = useState({ x: 50, y: 50, visible: false });
   const [hovered, setHovered] = useState(false);
 
-  // Staggered parallax for each card based on its index
-  const yOffset = useTransform(scrollYProgress, [0, 1], [150 + index * 80, -100 - index * 40]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0.5]);
 
   const rotateX = useTransform(mouseY, [-0.5, 0.5], [12, -12]);
   const rotateY = useTransform(mouseX, [-0.5, 0.5], [-12, 12]);
@@ -85,8 +82,6 @@ const ServiceCard = ({ service, onServiceClick, index, scrollYProgress }) => {
     <motion.div
       ref={cardRef}
       style={{
-        y: yOffset,
-        opacity,
         rotateX, rotateY,
         transformPerspective: 1200,
         transformStyle: 'preserve-3d',
@@ -99,7 +94,7 @@ const ServiceCard = ({ service, onServiceClick, index, scrollYProgress }) => {
       onMouseLeave={handleMouseLeave}
       onMouseEnter={() => setHovered(true)}
       onClick={() => onServiceClick(service.id)}
-      className="relative group rounded-3xl border border-white/5 p-8 overflow-hidden cursor-pointer select-none bg-black/20 backdrop-blur-md"
+      className="relative group rounded-3xl border border-white/5 p-8 overflow-hidden cursor-pointer select-none bg-black/20 backdrop-blur-md h-full min-h-[400px] flex flex-col items-start"
     >
       {/* Mouse spotlight */}
       <div
@@ -114,7 +109,7 @@ const ServiceCard = ({ service, onServiceClick, index, scrollYProgress }) => {
       <div className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10`} />
 
       {/* Content (lifted via translateZ for 3D depth) */}
-      <div className="relative z-20" style={{ transform: 'translateZ(30px)' }}>
+      <div className="relative z-20 flex flex-col flex-1" style={{ transform: 'translateZ(30px)' }}>
         {/* Icon */}
         <motion.div
           whileHover={{ rotate: [0, -10, 10, 0], scale: 1.15 }}
@@ -144,7 +139,7 @@ const ServiceCard = ({ service, onServiceClick, index, scrollYProgress }) => {
 
         {/* CTA */}
         <div
-          className="flex items-center gap-1.5 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0"
+          className="flex items-center gap-1.5 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0 mt-auto"
           style={{ color: service.accent }}
         >
           Explore Service <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -192,7 +187,7 @@ const Services = ({ onServiceClick }) => {
         </motion.div>
 
         {/* Cards Grid with individual Parallax */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-stretch" style={{ gridAutoRows: '1fr' }}>
           {services.map((service, index) => (
             <ServiceCard
               key={service.id}
