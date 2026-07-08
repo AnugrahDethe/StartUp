@@ -85,7 +85,55 @@ function App() {
       'privacy-policy':       'Privacy Policy — Vivernlab',
       'terms-conditions':     'Terms & Conditions — Vivernlab',
     };
-    document.title = currentPage ? titles[currentPage] : 'Vivernlab';
+
+    const descriptions = {
+      'website-development': 'Explore Vivernlab’s modern website development services for fast, SEO-ready, conversion-focused experiences.',
+      'android-app-dev': 'Build polished Android apps with Vivernlab — from product strategy to launch and performance optimization.',
+      'software-development': 'Get custom software solutions from Vivernlab, including APIs, automation, and scalable business systems.',
+      'crm-solutions': 'Transform your sales and operations with Vivernlab’s AI-driven CRM solutions and automation workflows.',
+      'privacy-policy': 'Read Vivernlab’s privacy policy to understand how we collect, use, and protect your information.',
+      'terms-conditions': 'Review Vivernlab’s terms and conditions for using our services and website.',
+    };
+
+    const setMeta = (name, content) => {
+      let tag = document.querySelector(`meta[name="${name}"]`);
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute('name', name);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute('content', content);
+    };
+
+    const setPropertyMeta = (property, content) => {
+      let tag = document.querySelector(`meta[property="${property}"]`);
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute('property', property);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute('content', content);
+    };
+
+    const title = currentPage ? titles[currentPage] : 'Vivernlab — Websites, Apps & CRM Solutions';
+    const description = currentPage ? descriptions[currentPage] : 'Vivernlab builds websites, Android apps, custom software, and AI-driven CRM solutions for growing businesses.';
+    const canonicalUrl = currentPage ? `https://vivernlab.com/#${currentPage}` : 'https://vivernlab.com/';
+
+    document.title = title;
+    setMeta('description', description);
+    setPropertyMeta('og:title', title);
+    setPropertyMeta('og:description', description);
+    setPropertyMeta('og:url', canonicalUrl);
+    setPropertyMeta('twitter:title', title);
+    setPropertyMeta('twitter:description', description);
+
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', canonicalUrl);
   }, [currentPage]);
 
   return (
