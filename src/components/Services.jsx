@@ -39,7 +39,7 @@ const services = [
   {
     id: 'crm-solutions',
     title: 'CRM Solutions',
-    description: 'Intelligent customer pipelines that automate lead scoring, outreach, and reporting — your always-on sales team.',
+    description: 'Intelligent customer pipelines that automate lead scoring, outreach, and reporting your always-on sales team.',
     icon: Users,
     accent: '#10B981',
     glow: 'rgba(16, 185, 129, 0.2)',
@@ -170,14 +170,14 @@ const Services = ({ onServiceClick }) => {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:6rem_6rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_20%,transparent_100%)] pointer-events-none" />
 
       {/* Section ambient glow */}
-      <motion.div 
+      <motion.div
         style={{ opacity: scrollYProgress }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-indigo-500/5 rounded-full blur-[140px] pointer-events-none" 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-indigo-500/5 rounded-full blur-[140px] pointer-events-none"
       />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         {/* Header with Parallax */}
-        <motion.div 
+        <motion.div
           style={{ y: yHeader, opacity: opacityHeader }}
           className="text-center max-w-3xl mx-auto mb-24"
         >
@@ -194,11 +194,11 @@ const Services = ({ onServiceClick }) => {
         {/* Cards Grid with individual Parallax */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {services.map((service, index) => (
-            <ServiceCard 
-              key={service.id} 
-              service={service} 
-              index={index} 
-              onServiceClick={onServiceClick} 
+            <ServiceCard
+              key={service.id}
+              service={service}
+              index={index}
+              onServiceClick={onServiceClick}
               scrollYProgress={scrollYProgress}
             />
           ))}

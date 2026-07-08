@@ -34,10 +34,10 @@ const useCountUp = (target, duration = 1800) => {
 };
 
 const stats = [
-  { target: 20,  suffix: '+',  label: 'Projects Completed' },
-  { target: 8,   suffix: '+',  label: 'Technologies' },
-  { target: 100, suffix: '%',  label: 'Custom Development' },
-  { target: 24,  suffix: '/7', label: 'Support' },
+  { target: 9, suffix: '+', label: 'Projects Completed' },
+  { target: 8, suffix: '+', label: 'Technologies' },
+  { target: 100, suffix: '%', label: 'Custom Development' },
+  { target: 24, suffix: '/7', label: 'Support' },
 ];
 
 const StatCard = ({ target, suffix, label }) => {
@@ -112,7 +112,7 @@ const ScrollArrow = () => (
 /* ── Main Hero Component ────────────────────────────────────────── */
 const Hero = () => {
   const { scrollYProgress } = useScroll();
-  
+
   // Simplified smooth parallax
   const yText = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const yMockup = useTransform(scrollYProgress, [0, 1], [0, -100]);
@@ -120,7 +120,7 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-24 sm:pt-28 md:pt-32 pb-16 md:pb-24 overflow-hidden">
-      
+
       {/* Ambient glows */}
       <motion.div
         animate={{ x: [0, 30, -20, 0], y: [0, -40, 20, 0] }}
@@ -136,10 +136,10 @@ const Hero = () => {
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <motion.div style={{ opacity: opacityFade }} className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-12 lg:mb-20">
-            
+
             {/* Left Column: Original Copy + Parallax */}
             <motion.div style={{ y: yText }} className="text-center md:text-left z-10">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
@@ -149,7 +149,7 @@ const Hero = () => {
                 IT Solution
               </motion.div>
 
-              <motion.h1 
+              <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
@@ -165,17 +165,17 @@ const Hero = () => {
                 <span className="text-gradient">Modern Businesses.</span>
               </motion.h1>
 
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-lg text-gray-400 mb-10 max-w-xl leading-relaxed font-light mx-auto md:mx-0"
               >
                 We help businesses grow by delivering smart, reliable, and future-ready digital
-                solutions — combining technology, creativity, and strategy.
+                solutions combining technology, creativity, and strategy.
               </motion.p>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
@@ -195,7 +195,7 @@ const Hero = () => {
 
             {/* Right Column: Clean Code Mockup */}
             <div className="relative hidden lg:flex flex-col gap-6 lg:gap-8 perspective-1000 mt-10 lg:mt-0 items-center justify-center">
-              
+
               <motion.div
                 style={{ y: yMockup }}
                 initial={{ opacity: 0, rotateY: 15, rotateX: 5, x: 30 }}
@@ -205,7 +205,7 @@ const Hero = () => {
               >
                 <CodeMockup />
               </motion.div>
-              
+
             </div>
           </div>
 

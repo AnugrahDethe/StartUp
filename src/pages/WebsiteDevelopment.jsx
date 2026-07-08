@@ -8,10 +8,10 @@ import {
 } from 'lucide-react';
 
 const stats = [
-  { target: 200, suffix: '+', label: 'Projects Delivered' },
-  { target: 15, suffix: '+', label: 'Years Experience' },
-  { target: 98, suffix: '%', label: 'Client Satisfaction' },
-  { target: 40, suffix: '+', label: 'Countries Served' },
+  { target: 4, suffix: '+', label: 'Projects' },
+  { target: 1, suffix: '+', label: 'Years Experience' },
+  { target: 100, suffix: '%', label: 'Client Satisfaction' },
+  { target: 1, suffix: '+', label: 'Countries Served' },
 ];
 
 const useCountUp = (target, duration = 1800) => {
@@ -48,7 +48,7 @@ const StatCard = ({ target, suffix, label }) => {
   const { value, ref } = useCountUp(target);
   return (
     <motion.div variants={fadeUpVariant} ref={ref} className="text-center px-4">
-      <motion.div 
+      <motion.div
         initial={{ scale: 0.5 }}
         whileInView={{ scale: 1 }}
         transition={{ type: "spring", stiffness: 200 }}
@@ -128,8 +128,8 @@ const staggerContainer = {
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 40 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
   }
@@ -137,8 +137,8 @@ const fadeUpVariant = {
 
 const popInVariant = {
   hidden: { opacity: 0, scale: 0.8 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     scale: 1,
     transition: { type: "spring", stiffness: 100, damping: 15 }
   }
@@ -150,7 +150,7 @@ const WebsiteDevelopment = ({ onBack }) => {
 
   const refOverview = useRef(null);
   const inViewOverview = useInView(refOverview, { once: true, amount: 0.2 });
-  
+
   const refMethodology = useRef(null);
   const inViewMethodology = useInView(refMethodology, { once: true, amount: 0.2 });
 
@@ -159,16 +159,16 @@ const WebsiteDevelopment = ({ onBack }) => {
 
       {/* Dynamic Backgrounds */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <motion.div 
-          animate={{ 
-            rotate: 360, 
+        <motion.div
+          animate={{
+            rotate: 360,
             scale: [1, 1.2, 1],
           }}
           transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
           className="absolute -top-1/2 -right-1/4 w-[1000px] h-[1000px] bg-indigo-500/5 rounded-full blur-[150px]"
         />
-        <motion.div 
-          animate={{ 
+        <motion.div
+          animate={{
             rotate: -360,
             scale: [1, 1.1, 1],
           }}
@@ -183,7 +183,7 @@ const WebsiteDevelopment = ({ onBack }) => {
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28">
           <div className="container mx-auto px-6 md:px-12">
-            
+
             {/* Breadcrumb & Navigation */}
             <div className="flex items-center justify-between mb-12">
               <motion.button
@@ -212,16 +212,16 @@ const WebsiteDevelopment = ({ onBack }) => {
                   <div className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
                   <span className="text-xs font-semibold text-indigo-300 tracking-wider uppercase">IT Services & Solutions</span>
                 </motion.div>
-                
+
                 <motion.h1 variants={fadeUpVariant} className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6">
                   Web Application <br />
                   <span className="text-gradient">Development</span>
                 </motion.h1>
-                
+
                 <motion.p variants={fadeUpVariant} className="text-gray-400 text-lg md:text-xl leading-relaxed mb-10 max-w-xl">
                   Powerful, scalable web applications built with the latest technologies to drive your business forward.
                 </motion.p>
-                
+
                 <motion.div variants={fadeUpVariant} className="flex flex-wrap items-center gap-4">
                   <a
                     href="#contact"
@@ -251,18 +251,18 @@ const WebsiteDevelopment = ({ onBack }) => {
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
                 >
-                  <div 
+                  <div
                     className="relative glass border border-white/10 rounded-[2rem] p-4 overflow-hidden shadow-2xl z-10"
                   >
                     <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:2rem_2rem] opacity-50" />
-                    <img 
-                      src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" 
-                      alt="Web Development Workspace" 
+                    <img
+                      src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop"
+                      alt="Web Development Workspace"
                       className="w-full h-auto rounded-xl object-cover mix-blend-luminosity opacity-90 transition-opacity hover:opacity-100"
                     />
                   </div>
                   {/* Floating UI Elements (Static positioning) */}
-                  <div 
+                  <div
                     className="absolute -bottom-6 -left-6 glass border border-white/10 p-4 rounded-2xl z-20 flex items-center gap-4 backdrop-blur-xl shadow-xl"
                   >
                     <div className="w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400">
@@ -282,7 +282,7 @@ const WebsiteDevelopment = ({ onBack }) => {
         {/* Stats Section */}
         <section className="py-12 border-y border-white/5 bg-white/[0.01]">
           <div className="container mx-auto px-6 md:px-12">
-            <motion.div 
+            <motion.div
               variants={staggerContainer}
               initial="hidden"
               whileInView="visible"
@@ -300,7 +300,7 @@ const WebsiteDevelopment = ({ onBack }) => {
         <section ref={refOverview} className="py-24 lg:py-32 relative">
           <div className="container mx-auto px-6 md:px-12">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
-              
+
               <motion.div
                 initial={{ opacity: 0, x: -50, rotate: -5 }}
                 animate={inViewOverview ? { opacity: 1, x: 0, rotate: 0 } : {}}
@@ -308,14 +308,14 @@ const WebsiteDevelopment = ({ onBack }) => {
                 className="relative order-2 lg:order-1 group"
               >
                 <div className="absolute inset-0 bg-cyan-500/20 blur-[100px] rounded-full pointer-events-none group-hover:bg-cyan-500/30 transition-colors duration-700" />
-                <motion.div 
+                <motion.div
                   style={{ y: yParallax }}
                   className="relative rounded-3xl overflow-hidden glass border border-white/10 p-2 shadow-2xl"
                 >
                   <div className="absolute inset-0 bg-indigo-500/10 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500" />
-                  <img 
-                    src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop" 
-                    alt="Digital Technology overlay" 
+                  <img
+                    src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop"
+                    alt="Digital Technology overlay"
                     className="w-full h-auto rounded-2xl object-cover mix-blend-luminosity opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                   />
                 </motion.div>
@@ -333,17 +333,17 @@ const WebsiteDevelopment = ({ onBack }) => {
                     Service Overview
                   </h3>
                 </motion.div>
-                
+
                 <motion.h2 variants={fadeUpVariant} className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
                   Web Application Development That Drives Results
                 </motion.h2>
-                
+
                 <div className="space-y-6 text-gray-400 leading-relaxed text-lg">
                   <motion.p variants={fadeUpVariant}>
                     A powerful web application is the foundation of modern digital business. Whether you need a SaaS platform, an internal management portal, a client-facing dashboard, or a complex data-driven application, our team builds robust, scalable, and secure web applications tailored to your exact requirements.
                   </motion.p>
                   <motion.p variants={fadeUpVariant}>
-                    We specialize in the full spectrum of web application development — from single-page applications (SPAs) and progressive web apps (PWAs) to large-scale multi-tenant enterprise platforms with complex data flows and real-time capabilities.
+                    We specialize in the full spectrum of web application development  from single-page applications (SPAs) and progressive web apps (PWAs) to large-scale multi-tenant enterprise platforms with complex data flows and real-time capabilities.
                   </motion.p>
                   <motion.p variants={fadeUpVariant}>
                     We build front-ends with React, Next.js, and Vue.js for fast, interactive UIs. Our backends are powered by Node.js, Laravel, and Django, deployed on cloud infrastructure including AWS, Google Cloud, and DigitalOcean for maximum reliability.
@@ -358,8 +358,8 @@ const WebsiteDevelopment = ({ onBack }) => {
         {/* Why Choose Us */}
         <section className="py-24 bg-white/[0.02] border-t border-white/5 relative backdrop-blur-sm">
           <div className="container mx-auto px-6 md:px-12">
-            
-            <motion.div 
+
+            <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.5 }}
@@ -379,7 +379,7 @@ const WebsiteDevelopment = ({ onBack }) => {
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
@@ -396,25 +396,25 @@ const WebsiteDevelopment = ({ onBack }) => {
                     className="glass p-8 rounded-3xl border border-white/5 hover:border-white/20 transition-colors group relative overflow-hidden"
                   >
                     {/* Glowing background on hover */}
-                    <motion.div 
+                    <motion.div
                       className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"
                       style={{ background: `radial-gradient(circle at top right, ${feature.accent}, transparent 70%)` }}
                     />
-                    
+
                     {/* Subtle top border glow */}
-                    <div 
+                    <div
                       className="absolute top-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       style={{ background: `linear-gradient(to right, ${feature.accent}, transparent)` }}
                     />
-                    
-                    <motion.div 
+
+                    <motion.div
                       whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
                       className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
                       style={{ background: `${feature.accent}15`, color: feature.accent }}
                     >
                       <Icon size={28} strokeWidth={1.5} />
                     </motion.div>
-                    
+
                     <h4 className="text-xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 transition-all">
                       {feature.title}
                     </h4>
@@ -430,8 +430,8 @@ const WebsiteDevelopment = ({ onBack }) => {
         {/* Methodology / How We Work */}
         <section ref={refMethodology} className="py-24 lg:py-32 relative overflow-hidden">
           <div className="container mx-auto px-6 md:px-12">
-            
-            <motion.div 
+
+            <motion.div
               initial="hidden"
               animate={inViewMethodology ? "visible" : "hidden"}
               variants={staggerContainer}
@@ -452,7 +452,7 @@ const WebsiteDevelopment = ({ onBack }) => {
             <div className="relative max-w-5xl mx-auto">
               {/* Connecting Line (Desktop) */}
               <div className="hidden md:block absolute top-12 left-0 right-0 h-px bg-white/10" />
-              <motion.div 
+              <motion.div
                 className="hidden md:block absolute top-12 left-0 h-px bg-gradient-to-r from-indigo-500 via-cyan-500 to-indigo-500"
                 initial={{ width: 0 }}
                 animate={inViewMethodology ? { width: '100%' } : {}}
@@ -471,25 +471,25 @@ const WebsiteDevelopment = ({ onBack }) => {
                       key={idx}
                       initial={{ opacity: 0, y: 50, scale: 0.9 }}
                       animate={inViewMethodology ? { opacity: 1, y: 0, scale: 1 } : {}}
-                      transition={{ 
-                        delay: 0.5 + (idx * 0.2), 
-                        type: "spring", 
-                        stiffness: 100, 
-                        damping: 12 
+                      transition={{
+                        delay: 0.5 + (idx * 0.2),
+                        type: "spring",
+                        stiffness: 100,
+                        damping: 12
                       }}
                       className="flex flex-col items-center text-center group"
                     >
                       {/* Circle */}
-                      <motion.div 
+                      <motion.div
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         className="w-24 h-24 rounded-full glass border-2 border-white/10 flex items-center justify-center bg-black/50 mb-6 relative group-hover:border-indigo-500/50 transition-colors shadow-xl"
                       >
                         <span className="text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-cyan-400 transition-all">
                           {step.step}
                         </span>
-                        
+
                         {/* Floating Icon Badge */}
-                        <motion.div 
+                        <motion.div
                           initial={{ scale: 0 }}
                           animate={inViewMethodology ? { scale: 1 } : { scale: 0 }}
                           transition={{ delay: 1 + (idx * 0.2), type: "spring", bounce: 0.5 }}
@@ -498,7 +498,7 @@ const WebsiteDevelopment = ({ onBack }) => {
                           <Icon size={18} />
                         </motion.div>
                       </motion.div>
-                      
+
                       <h4 className="text-xl font-bold text-white mb-3 group-hover:text-indigo-300 transition-colors">{step.title}</h4>
                       <p className="text-gray-400 text-sm leading-relaxed max-w-[200px]">{step.desc}</p>
                     </motion.div>
@@ -513,21 +513,21 @@ const WebsiteDevelopment = ({ onBack }) => {
         <section className="py-24 relative overflow-hidden">
           {/* Deep background color block */}
           <div className="absolute inset-0 bg-[#0A1128]" />
-          
+
           {/* Large decorative circles */}
-          <motion.div 
+          <motion.div
             animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -bottom-1/2 -left-1/4 w-full aspect-square bg-indigo-900/40 rounded-full blur-[120px] pointer-events-none" 
+            className="absolute -bottom-1/2 -left-1/4 w-full aspect-square bg-indigo-900/40 rounded-full blur-[120px] pointer-events-none"
           />
-          <motion.div 
+          <motion.div
             animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
             transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute -top-1/2 -right-1/4 w-full aspect-square bg-cyan-900/30 rounded-full blur-[120px] pointer-events-none" 
+            className="absolute -top-1/2 -right-1/4 w-full aspect-square bg-cyan-900/30 rounded-full blur-[120px] pointer-events-none"
           />
-          
+
           <div className="container mx-auto px-6 md:px-12 relative z-10">
-            <motion.div 
+            <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -537,16 +537,16 @@ const WebsiteDevelopment = ({ onBack }) => {
               <motion.h3 variants={fadeUpVariant} className="text-indigo-400 font-semibold tracking-wider text-sm uppercase mb-4">
                 Ready to get started?
               </motion.h3>
-              
+
               <motion.h2 variants={fadeUpVariant} className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight">
                 Let's Build Something <br className="hidden md:block" />
                 Exceptional Together
               </motion.h2>
-              
+
               <motion.p variants={fadeUpVariant} className="text-gray-300 text-lg md:text-xl leading-relaxed mb-12 max-w-2xl mx-auto">
                 Partner with StartUp to transform your Ideas into Reality. Our experts are ready to discuss your next big project and show you how we can help you grow.
               </motion.p>
-              
+
               <motion.div variants={fadeUpVariant} className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <motion.a
                   whileHover={{ scale: 1.05 }}
@@ -565,11 +565,11 @@ const WebsiteDevelopment = ({ onBack }) => {
                   href="#"
                   className="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-white bg-[#25D366] hover:bg-[#1EBE5D] transition-colors flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(37,211,102,0.3)] group"
                 >
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 group-hover:rotate-12 transition-transform"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 group-hover:rotate-12 transition-transform"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" /></svg>
                   Chat on WhatsApp
                 </motion.a>
               </motion.div>
-              
+
             </motion.div>
           </div>
         </section>
