@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -7,12 +7,29 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ThreeBackground from './components/ThreeBackground';
-import WebsiteDevelopment from './pages/WebsiteDevelopment';
-import AndroidAppDev from './pages/AndroidAppDev';
-import SoftwareDevelopment from './pages/SoftwareDevelopment';
-import CRMSolutions from './pages/CRMSolutions';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import TermsConditions from './pages/TermsConditions';
+
+// Lazy load page components
+const WebsiteDevelopment = lazy(() => import('./pages/WebsiteDevelopment'));
+const AndroidAppDev = lazy(() => import('./pages/AndroidAppDev'));
+const SoftwareDevelopment = lazy(() => import('./pages/SoftwareDevelopment'));
+const CRMSolutions = lazy(() => import('./pages/CRMSolutions'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsConditions = lazy(() => import('./pages/TermsConditions'));
+
+// Fallback component while lazy component loads
+const LoadingFallback = () => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    className="w-screen h-screen flex items-center justify-center bg-[#030305]"
+  >
+    <div className="flex flex-col items-center gap-4">
+      <div className="w-12 h-12 rounded-full border-2 border-transparent border-t-indigo-500 animate-spin" />
+      <p className="text-gray-400 text-sm">Loading...</p>
+    </div>
+  </motion.div>
+);
 
 const SERVICE_PAGES = {
   'website-development': WebsiteDevelopment,
@@ -85,18 +102,20 @@ function App() {
 
         <AnimatePresence mode="wait">
           {currentPage && SERVICE_PAGES[currentPage] ? (
-            <motion.div
-              key={currentPage}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {(() => {
-                const PageComponent = SERVICE_PAGES[currentPage];
-                return <PageComponent onBack={goHome} />;
-              })()}
-            </motion.div>
+            <Suspense fallback={<LoadingFallback />}>
+              <motion.div
+                key={currentPage}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {(() => {
+                  const PageComponent = SERVICE_PAGES[currentPage];
+                  return <PageComponent onBack={goHome} />;
+                })()}
+              </motion.div>
+            </Suspense>
           ) : (
             <motion.div
               key="home"
