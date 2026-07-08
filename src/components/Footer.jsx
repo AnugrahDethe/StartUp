@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { Linkedin, Instagram, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { FaLinkedin, FaInstagram } from 'react-icons/fa';
 import logoImg from '../assets/logo2.jpeg';
 
 const footerLinks = [
@@ -10,8 +11,8 @@ const footerLinks = [
 ];
 
 const socials = [
-  { Icon: Linkedin, href: 'https://www.linkedin.com/company/Vivernlab/', label: 'LinkedIn' },
-  { Icon: Instagram, href: 'https://www.instagram.com/Vivernlab?igsh=NGdtaGJ1eGIxdnY=', label: 'Instagram' },
+  { Icon: FaLinkedin, href: 'https://www.linkedin.com/company/Vivernlab/', label: 'LinkedIn' },
+  { Icon: FaInstagram, href: 'https://www.instagram.com/Vivernlab?igsh=NGdtaGJ1eGIxdnY=', label: 'Instagram' },
 ];
 
 const Footer = ({ onNavigate }) => {
