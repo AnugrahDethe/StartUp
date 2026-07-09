@@ -3,21 +3,88 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/vivern_icon.png" />
+    <link rel="apple-touch-icon" href="/vivern_icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Vivernlab builds websites, Android apps, custom software, and AI-driven CRM solutions for growing businesses." />
-    <meta name="robots" content="index,follow" />
-    <meta name="theme-color" content="#030305" />
+
+    <!-- Primary SEO -->
+    <title>Vivernlab</title>
+    <meta name="description" content="Vivernlab builds custom websites, Android apps, software, and AI-driven CRM solutions for startups and growing businesses." />
+    <meta name="keywords" content="website development, android app development, custom software development, CRM solutions, AI software, startup development agency" />
+    <meta name="author" content="Vivernlab" />
+    <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://vivernlab.com/" />
-    <meta property="og:title" content="Vivernlab — Websites, Apps & CRM Solutions" />
-    <meta property="og:description" content="Vivernlab builds websites, Android apps, custom software, and AI-driven CRM solutions for growing businesses." />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#030305" />
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://vivernlab.com/" />
-    <meta property="og:image" content="https://vivernlab.com/og-image.png" />
+    <meta property="og:title" content="Vivernlab — Websites, Apps & CRM Solutions" />
+    <meta property="og:description" content="Vivernlab builds custom websites, Android apps, software, and AI-driven CRM solutions for startups and growing businesses." />
+    <meta property="og:image" content="https://vivernlab.com/vivern_icon.png" />
+    <meta property="og:site_name" content="Vivernlab" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Vivernlab — Websites, Apps & CRM Solutions" />
-    <meta name="twitter:description" content="Vivernlab builds websites, Android apps, custom software, and AI-driven CRM solutions for growing businesses." />
-    <meta name="twitter:image" content="https://vivernlab.com/og-image.png" />
-    <title>Vivernlab — Websites, Apps & CRM Solutions</title>
+    <meta name="twitter:description" content="Vivernlab builds custom websites, Android apps, software, and AI-driven CRM solutions for startups and growing businesses." />
+    <meta name="twitter:image" content="https://vivernlab.com/vivern_icon.png" />
+
+    <!-- Structured Data: Organization (helps Google understand your brand, can enable rich results) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Vivernlab",
+      "url": "https://vivernlab.com/",
+      "logo": "https://vivernlab.com/vivern_icon.png",
+      "description": "Vivernlab builds custom websites, Android apps, software, and AI-driven CRM solutions for startups and growing businesses.",
+      "founders": [
+        { "@type": "Person", "name": "Anugrah" },
+        { "@type": "Person", "name": "Arkam" }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/vivernlab",
+        "https://www.linkedin.com/company/vivernlab"
+      ]
+    }
+    </script>
+
+    <!-- Structured Data: Website (enables sitelinks searchbox eligibility) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Vivernlab",
+      "url": "https://vivernlab.com/"
+    }
+    </script>
+
+    <!-- Structured Data: Service catalog (helps Google understand what you offer) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Software Development",
+      "provider": {
+        "@type": "Organization",
+        "name": "Vivernlab"
+      },
+      "areaServed": "Worldwide",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Vivernlab Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website Development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Android App Development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Software Development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CRM Solutions" } }
+        ]
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
